@@ -1,4 +1,0 @@
-services:
-#    siviuq_main.example:
-#        class: Siviuq\MainBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
