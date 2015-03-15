@@ -1,0 +1,7 @@
+siviuq_main_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SiviuqMainBundle:Default:index }
+
+siviuq_main_help:
+    path:     /ayuda/{tema}
+    defaults: { _controller: SiviuqMainBundle:Default:ayuda }
