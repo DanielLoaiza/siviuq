@@ -59,7 +59,7 @@ class GruposInvestigacion
 	
     /**
      * 
-     * @OneToMany(targetEntity="ResgistroEstudiante",mappedBy="grupoInvestigacionId")
+     * @OneToMany(targetEntity="RegistroEstudiante",mappedBy="grupoInvestigacionId")
      */
     private $registroEstudiante;
     
