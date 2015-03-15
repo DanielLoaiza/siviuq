@@ -18,7 +18,7 @@ class RegistroEstudiante
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="GruposInvestigacion",inversedBy="registroEstudiante")
      */
-    private $grupoInvestigacionId;
+    private $gruposInvestigacionId;
 
     /**
      *
