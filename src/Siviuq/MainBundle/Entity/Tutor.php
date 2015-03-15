@@ -3,6 +3,8 @@
 namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tutor
@@ -35,180 +37,141 @@ class Tutor
      */
     private $nombre;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="genero", type="smallint")
-     */
-    private $genero;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="categoria_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Categoria")
      */
     private $categoriaId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="grupo_investigacion_id", type="integer")
+     * @ORM\ManyToMany(targetEntity="GruposInvestigacion",mappedBy="tutores")
      */
     private $grupoInvestigacionId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="proyecto_investigacion_id", type="integer")
+     * @ManyToMany(targetEntity="Proyectos",mappedBy="$tutores")
      */
     private $proyectoInvestigacionId;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
+	
+    
+    public function __construct()
     {
-        return $this->id;
+    	$this->proyectoInvestigacionId=new ArrayCollection();
+    	$this->grupoInvestigacionId=new ArrayCollection();
     }
-
-    /**
-     * Set documento
-     *
-     * @param string $documento
-     * @return Tutor
-     */
-    public function setDocumento($documento)
-    {
-        $this->documento = $documento;
-
-        return $this;
-    }
-
-    /**
-     * Get documento
-     *
-     * @return string 
-     */
-    public function getDocumento()
-    {
-        return $this->documento;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return Tutor
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set genero
-     *
-     * @param integer $genero
-     * @return Tutor
-     */
-    public function setGenero($genero)
-    {
-        $this->genero = $genero;
-
-        return $this;
-    }
-
-    /**
-     * Get genero
-     *
-     * @return integer 
-     */
-    public function getGenero()
-    {
-        return $this->genero;
-    }
-
-    /**
-     * Set categoriaId
-     *
-     * @param integer $categoriaId
-     * @return Tutor
-     */
-    public function setCategoriaId($categoriaId)
-    {
-        $this->categoriaId = $categoriaId;
-
-        return $this;
-    }
-
-    /**
-     * Get categoriaId
-     *
-     * @return integer 
-     */
-    public function getCategoriaId()
-    {
-        return $this->categoriaId;
-    }
-
-    /**
-     * Set grupoInvestigacionId
-     *
-     * @param integer $grupoInvestigacionId
-     * @return Tutor
-     */
-    public function setGrupoInvestigacionId($grupoInvestigacionId)
-    {
-        $this->grupoInvestigacionId = $grupoInvestigacionId;
-
-        return $this;
-    }
-
-    /**
-     * Get grupoInvestigacionId
-     *
-     * @return integer 
-     */
-    public function getGrupoInvestigacionId()
-    {
-        return $this->grupoInvestigacionId;
-    }
-
-    /**
-     * Set proyectoInvestigacionId
-     *
-     * @param integer $proyectoInvestigacionId
-     * @return Tutor
-     */
-    public function setProyectoInvestigacionId($proyectoInvestigacionId)
-    {
-        $this->proyectoInvestigacionId = $proyectoInvestigacionId;
-
-        return $this;
-    }
-
-    /**
-     * Get proyectoInvestigacionId
-     *
-     * @return integer 
-     */
-    public function getProyectoInvestigacionId()
-    {
-        return $this->proyectoInvestigacionId;
-    }
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getDocumento() {
+		return $this->documento;
+	}
+	
+	/**
+	 *
+	 * @param string $documento        	
+	 */
+	public function setDocumento(string $documento) {
+		$this->documento = $documento;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getNombre() {
+		return $this->nombre;
+	}
+	
+	/**
+	 *
+	 * @param string $nombre        	
+	 */
+	public function setNombre(string $nombre) {
+		$this->nombre = $nombre;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getCategoriaId() {
+		return $this->categoriaId;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$categoriaId
+	 */
+	public function setCategoriaId($categoriaId) {
+		$this->categoriaId = $categoriaId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getGrupoInvestigacionId() {
+		return $this->grupoInvestigacionId;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$grupoInvestigacionId
+	 */
+	public function setGrupoInvestigacionId($grupoInvestigacionId) {
+		$this->grupoInvestigacionId = $grupoInvestigacionId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getProyectoInvestigacionId() {
+		return $this->proyectoInvestigacionId;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$proyectoInvestigacionId
+	 */
+	public function setProyectoInvestigacionId($proyectoInvestigacionId) {
+		$this->proyectoInvestigacionId = $proyectoInvestigacionId;
+		return $this;
+	}
+	
+    
+    
 }

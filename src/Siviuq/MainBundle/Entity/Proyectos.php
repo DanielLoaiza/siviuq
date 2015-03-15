@@ -3,6 +3,8 @@
 namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * Proyectos
@@ -49,136 +51,170 @@ class Proyectos
      */
     private $fechaInicio;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="semilleros_id", type="integer")
+     /**
+     * 
+     * @ManyToMany(targetEntity="Semillero", inversedBy="$proyectoInvestigacionId")
      */
     private $semillerosId;
-
-
+    
     /**
-     * Get id
-     *
-     * @return integer 
+     * 
+     * @ManyToMany(targetEntity="Tutor", inversedBy="$proyectoInvestigacionId")
      */
-    public function getId()
+    private $tutores;
+
+	/**
+	 * @ManyToMany(targetEntity="Estudiantes",inversedBy="proyectoInvestigacion")
+	 */
+    private $estudiantes;
+    
+    public function __construct()
     {
-        return $this->id;
+    	$this->tutores=new ArrayCollection();
+    	$this->semillerosId=new ArrayCollection();
+    	$this->estudiantes=new ArrayCollection();
     }
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	
+	/**
+	 *
+	 * @param string $titulo        	
+	 */
+	public function setTitulo(string $titulo) {
+		$this->titulo = $titulo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getGastoEfectivo() {
+		return $this->gastoEfectivo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$gastoEfectivo
+	 */
+	public function setGastoEfectivo($gastoEfectivo) {
+		$this->gastoEfectivo = $gastoEfectivo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getDuracion() {
+		return $this->duracion;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$duracion
+	 */
+	public function setDuracion($duracion) {
+		$this->duracion = $duracion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getFechaInicio() {
+		return $this->fechaInicio;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $fechaInicio        	
+	 */
+	public function setFechaInicio(\DateTime $fechaInicio) {
+		$this->fechaInicio = $fechaInicio;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getSemillerosId() {
+		return $this->semillerosId;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $semillerosId        	
+	 */
+	public function setSemillerosId($semillerosId) {
+		$this->semillerosId = $semillerosId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getTutores() {
+		return $this->tutores;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $tutores        	
+	 */
+	public function setTutores($tutores) {
+		$this->tutores = $tutores;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getEstudiantes() {
+		return $this->estudiantes;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $estudiantes        	
+	 */
+	public function setEstudiantes($estudiantes) {
+		$this->estudiantes = $estudiantes;
+		return $this;
+	}
+	
+    
+    
 
-    /**
-     * Set titulo
-     *
-     * @param string $titulo
-     * @return Proyectos
-     */
-    public function setTitulo($titulo)
-    {
-        $this->titulo = $titulo;
-
-        return $this;
-    }
-
-    /**
-     * Get titulo
-     *
-     * @return string 
-     */
-    public function getTitulo()
-    {
-        return $this->titulo;
-    }
-
-    /**
-     * Set gastoEfectivo
-     *
-     * @param integer $gastoEfectivo
-     * @return Proyectos
-     */
-    public function setGastoEfectivo($gastoEfectivo)
-    {
-        $this->gastoEfectivo = $gastoEfectivo;
-
-        return $this;
-    }
-
-    /**
-     * Get gastoEfectivo
-     *
-     * @return integer 
-     */
-    public function getGastoEfectivo()
-    {
-        return $this->gastoEfectivo;
-    }
-
-    /**
-     * Set duracion
-     *
-     * @param integer $duracion
-     * @return Proyectos
-     */
-    public function setDuracion($duracion)
-    {
-        $this->duracion = $duracion;
-
-        return $this;
-    }
-
-    /**
-     * Get duracion
-     *
-     * @return integer 
-     */
-    public function getDuracion()
-    {
-        return $this->duracion;
-    }
-
-    /**
-     * Set fechaInicio
-     *
-     * @param \DateTime $fechaInicio
-     * @return Proyectos
-     */
-    public function setFechaInicio($fechaInicio)
-    {
-        $this->fechaInicio = $fechaInicio;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaInicio
-     *
-     * @return \DateTime 
-     */
-    public function getFechaInicio()
-    {
-        return $this->fechaInicio;
-    }
-
-    /**
-     * Set semillerosId
-     *
-     * @param integer $semillerosId
-     * @return Proyectos
-     */
-    public function setSemillerosId($semillerosId)
-    {
-        $this->semillerosId = $semillerosId;
-
-        return $this;
-    }
-
-    /**
-     * Get semillerosId
-     *
-     * @return integer 
-     */
-    public function getSemillerosId()
-    {
-        return $this->semillerosId;
-    }
 }

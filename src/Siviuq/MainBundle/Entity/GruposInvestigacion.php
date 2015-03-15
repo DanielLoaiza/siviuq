@@ -3,6 +3,9 @@
 namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\ManyToMany;
 
 /**
  * GruposInvestigacion
@@ -36,13 +39,6 @@ class GruposInvestigacion
     private $nombre;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="clasificacion_colciencias", type="string", length=10)
-     */
-    private $clasificacionColciencias;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_conformacion", type="date")
@@ -52,133 +48,195 @@ class GruposInvestigacion
     /**
      * @var integer
      *
-     * @ORM\Column(name="programa_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Programa", inversedBy="grupos_investigacion")
      */
     private $programaId;
-
-
+    
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ManyToMany(targetEntity="Tutor",inversedBy="grupos")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
+    private $tutores;
+	
     /**
-     * Set codigo
-     *
-     * @param string $codigo
-     * @return GruposInvestigacion
+     * 
+     * @OneToMany(targetEntity="ResgistroEstudiante",mappedBy="grupoInvestigacionId")
      */
-    public function setCodigo($codigo)
-    {
-        $this->codigo = $codigo;
-
-        return $this;
-    }
-
+    private $registroEstudiante;
+    
     /**
-     * Get codigo
-     *
-     * @return string 
+     * 
+     * @ORM\ManyToOne(targetEntity="Clasificacion_colciencias",inversedBy="gruposId")
      */
-    public function getCodigo()
+    private $clasificacionColciencias;
+	/**
+	 * 
+	 * @ORM\ManyToMany(targetEntity="Lineas_investigacion",inversedBy="grupos_investigacion")
+	 */
+    private $lineaInvestigacion;
+    
+    public function __construct()
     {
-        return $this->codigo;
+    	$this->tutores=new ArrayCollection();
+    	$this->registroEstudiante=new ArrayCollection();
+    	$this->lineaInvestigacion=new ArrayCollection();
     }
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getCodigo() {
+		return $this->codigo;
+	}
+	
+	/**
+	 *
+	 * @param string $codigo        	
+	 */
+	public function setCodigo(string $codigo) {
+		$this->codigo = $codigo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getNombre() {
+		return $this->nombre;
+	}
+	
+	/**
+	 *
+	 * @param string $nombre        	
+	 */
+	public function setNombre(string $nombre) {
+		$this->nombre = $nombre;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getFechaConformacion() {
+		return $this->fechaConformacion;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $fechaConformacion        	
+	 */
+	public function setFechaConformacion(\DateTime $fechaConformacion) {
+		$this->fechaConformacion = $fechaConformacion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getProgramaId() {
+		return $this->programaId;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$programaId
+	 */
+	public function setProgramaId($programaId) {
+		$this->programaId = $programaId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getTutores() {
+		return $this->tutores;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $tutores        	
+	 */
+	public function setTutores($tutores) {
+		$this->tutores = $tutores;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getRegistroEstudiante() {
+		return $this->registroEstudiante;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $registroEstudiante        	
+	 */
+	public function setRegistroEstudiante($registroEstudiante) {
+		$this->registroEstudiante = $registroEstudiante;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getClasificacionColciencias() {
+		return $this->clasificacionColciencias;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $clasificacionColciencias        	
+	 */
+	public function setClasificacionColciencias($clasificacionColciencias) {
+		$this->clasificacionColciencias = $clasificacionColciencias;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getLineaInvestigacion() {
+		return $this->lineaInvestigacion;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $lineaInvestigacion        	
+	 */
+	public function setLineaInvestigacion($lineaInvestigacion) {
+		$this->lineaInvestigacion = $lineaInvestigacion;
+		return $this;
+	}
+	
+    
+    
 
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return GruposInvestigacion
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set clasificacionColciencias
-     *
-     * @param string $clasificacionColciencias
-     * @return GruposInvestigacion
-     */
-    public function setClasificacionColciencias($clasificacionColciencias)
-    {
-        $this->clasificacionColciencias = $clasificacionColciencias;
-
-        return $this;
-    }
-
-    /**
-     * Get clasificacionColciencias
-     *
-     * @return string 
-     */
-    public function getClasificacionColciencias()
-    {
-        return $this->clasificacionColciencias;
-    }
-
-    /**
-     * Set fechaConformacion
-     *
-     * @param \DateTime $fechaConformacion
-     * @return GruposInvestigacion
-     */
-    public function setFechaConformacion($fechaConformacion)
-    {
-        $this->fechaConformacion = $fechaConformacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaConformacion
-     *
-     * @return \DateTime 
-     */
-    public function getFechaConformacion()
-    {
-        return $this->fechaConformacion;
-    }
-
-    /**
-     * Set programaId
-     *
-     * @param integer $programaId
-     * @return GruposInvestigacion
-     */
-    public function setProgramaId($programaId)
-    {
-        $this->programaId = $programaId;
-
-        return $this;
-    }
-
-    /**
-     * Get programaId
-     *
-     * @return integer 
-     */
-    public function getProgramaId()
-    {
-        return $this->programaId;
-    }
 }

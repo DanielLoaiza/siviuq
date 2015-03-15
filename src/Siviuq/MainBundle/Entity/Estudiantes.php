@@ -3,6 +3,10 @@
 namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * Estudiantes
@@ -73,7 +77,7 @@ class Estudiantes
     /**
      * @var integer
      *
-     * @ORM\Column(name="programa_academico", type="integer")
+     * @ManyToOne(targetEntity="Programa")
      */
     private $programaAcademico;
 
@@ -87,278 +91,257 @@ class Estudiantes
     /**
      * @var integer
      *
-     * @ORM\Column(name="proyecto_investigacion", type="integer")
+     * @ManyToMany(targetEntity="Proyectos",mappedBy="estudiantes")
      */
     private $proyectoInvestigacion;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="semillero_formacion", type="integer")
+     * @ManyToOne(targetEntity="Semillero",inversedBy="estudiantes")
      */
     private $semilleroFormacion;
 
-
     /**
-     * Get id
-     *
-     * @return integer 
+     *  @OneToMany(targetEntity="RegistroEstudiante", mappedBy="$estudiantesId")
      */
-    public function getId()
+    private $registroEstudiante;
+	
+    public function __construct()
     {
-        return $this->id;
+    	$this->proyectoInvestigacion=new ArrayCollection();
+    	$this->registroEstudiante=new ArrayCollection();
     }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return Estudiantes
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set correo
-     *
-     * @param string $correo
-     * @return Estudiantes
-     */
-    public function setCorreo($correo)
-    {
-        $this->correo = $correo;
-
-        return $this;
-    }
-
-    /**
-     * Get correo
-     *
-     * @return string 
-     */
-    public function getCorreo()
-    {
-        return $this->correo;
-    }
-
-    /**
-     * Set direccion
-     *
-     * @param string $direccion
-     * @return Estudiantes
-     */
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
-
-        return $this;
-    }
-
-    /**
-     * Get direccion
-     *
-     * @return string 
-     */
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-    /**
-     * Set telefono
-     *
-     * @param string $telefono
-     * @return Estudiantes
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    /**
-     * Get telefono
-     *
-     * @return string 
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * Set tipo
-     *
-     * @param integer $tipo
-     * @return Estudiantes
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-
-        return $this;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return integer 
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    /**
-     * Set cedula
-     *
-     * @param string $cedula
-     * @return Estudiantes
-     */
-    public function setCedula($cedula)
-    {
-        $this->cedula = $cedula;
-
-        return $this;
-    }
-
-    /**
-     * Get cedula
-     *
-     * @return string 
-     */
-    public function getCedula()
-    {
-        return $this->cedula;
-    }
-
-    /**
-     * Set observaciones
-     *
-     * @param string $observaciones
-     * @return Estudiantes
-     */
-    public function setObservaciones($observaciones)
-    {
-        $this->observaciones = $observaciones;
-
-        return $this;
-    }
-
-    /**
-     * Get observaciones
-     *
-     * @return string 
-     */
-    public function getObservaciones()
-    {
-        return $this->observaciones;
-    }
-
-    /**
-     * Set programaAcademico
-     *
-     * @param integer $programaAcademico
-     * @return Estudiantes
-     */
-    public function setProgramaAcademico($programaAcademico)
-    {
-        $this->programaAcademico = $programaAcademico;
-
-        return $this;
-    }
-
-    /**
-     * Get programaAcademico
-     *
-     * @return integer 
-     */
-    public function getProgramaAcademico()
-    {
-        return $this->programaAcademico;
-    }
-
-    /**
-     * Set semestre
-     *
-     * @param integer $semestre
-     * @return Estudiantes
-     */
-    public function setSemestre($semestre)
-    {
-        $this->semestre = $semestre;
-
-        return $this;
-    }
-
-    /**
-     * Get semestre
-     *
-     * @return integer 
-     */
-    public function getSemestre()
-    {
-        return $this->semestre;
-    }
-
-    /**
-     * Set proyectoInvestigacion
-     *
-     * @param integer $proyectoInvestigacion
-     * @return Estudiantes
-     */
-    public function setProyectoInvestigacion($proyectoInvestigacion)
-    {
-        $this->proyectoInvestigacion = $proyectoInvestigacion;
-
-        return $this;
-    }
-
-    /**
-     * Get proyectoInvestigacion
-     *
-     * @return integer 
-     */
-    public function getProyectoInvestigacion()
-    {
-        return $this->proyectoInvestigacion;
-    }
-
-    /**
-     * Set semilleroFormacion
-     *
-     * @param integer $semilleroFormacion
-     * @return Estudiantes
-     */
-    public function setSemilleroFormacion($semilleroFormacion)
-    {
-        $this->semilleroFormacion = $semilleroFormacion;
-
-        return $this;
-    }
-
-    /**
-     * Get semilleroFormacion
-     *
-     * @return integer 
-     */
-    public function getSemilleroFormacion()
-    {
-        return $this->semilleroFormacion;
-    }
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getNombre() {
+		return $this->nombre;
+	}
+	
+	/**
+	 *
+	 * @param string $nombre        	
+	 */
+	public function setNombre(string $nombre) {
+		$this->nombre = $nombre;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getCorreo() {
+		return $this->correo;
+	}
+	
+	/**
+	 *
+	 * @param string $correo        	
+	 */
+	public function setCorreo(string $correo) {
+		$this->correo = $correo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getDireccion() {
+		return $this->direccion;
+	}
+	
+	/**
+	 *
+	 * @param string $direccion        	
+	 */
+	public function setDireccion(string $direccion) {
+		$this->direccion = $direccion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getTelefono() {
+		return $this->telefono;
+	}
+	
+	/**
+	 *
+	 * @param string $telefono        	
+	 */
+	public function setTelefono(string $telefono) {
+		$this->telefono = $telefono;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getTipo() {
+		return $this->tipo;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$tipo
+	 */
+	public function setTipo($tipo) {
+		$this->tipo = $tipo;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getCedula() {
+		return $this->cedula;
+	}
+	
+	/**
+	 *
+	 * @param string $cedula        	
+	 */
+	public function setCedula(string $cedula) {
+		$this->cedula = $cedula;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getObservaciones() {
+		return $this->observaciones;
+	}
+	
+	/**
+	 *
+	 * @param string $observaciones        	
+	 */
+	public function setObservaciones(string $observaciones) {
+		$this->observaciones = $observaciones;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getProgramaAcademico() {
+		return $this->programaAcademico;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$programaAcademico
+	 */
+	public function setProgramaAcademico($programaAcademico) {
+		$this->programaAcademico = $programaAcademico;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getSemestre() {
+		return $this->semestre;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$semestre
+	 */
+	public function setSemestre($semestre) {
+		$this->semestre = $semestre;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getProyectoInvestigacion() {
+		return $this->proyectoInvestigacion;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$proyectoInvestigacion
+	 */
+	public function setProyectoInvestigacion($proyectoInvestigacion) {
+		$this->proyectoInvestigacion = $proyectoInvestigacion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getSemilleroFormacion() {
+		return $this->semilleroFormacion;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$semilleroFormacion
+	 */
+	public function setSemilleroFormacion($semilleroFormacion) {
+		$this->semilleroFormacion = $semilleroFormacion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getRegistroEstudiante() {
+		return $this->registroEstudiante;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $registroEstudiante        	
+	 */
+	public function setRegistroEstudiante($registroEstudiante) {
+		$this->registroEstudiante = $registroEstudiante;
+		return $this;
+	}
+	
+    
+    
+    
+	
 }

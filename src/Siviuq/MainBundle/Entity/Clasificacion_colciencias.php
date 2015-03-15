@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Facultad
+ * Clasificacion_colciencias
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Facultad
+class Clasificacion_colciencias
 {
     /**
      * @var integer
@@ -25,71 +25,41 @@ class Facultad
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=50)
+     * @ORM\Column(name="nombre", type="string", length=20)
      */
     private $nombre;
-    
+
     /**
-     * 
-     * @ORM\OneToMany(targetEntity="Programa",mappedBy="facultadId")
+     * @var integer
+     *
+     * @ORM\OneToMany(targetEntity="GruposInvestigacion",mappedBy="clasificacionColciencias")
      */
-    private $programas;
+    private $gruposId;
+
 	
-    
     public function __construct()
     {
-    	$this->programas=new ArrayCollection();
+    	$this->gruposId= new ArrayCollection();
     }
-	
-	/**
-	 *
-	 * @return the integer
-	 */
 	public function getId() {
 		return $this->id;
 	}
-	
-	/**
-	 *
-	 * @param
-	 *        	$id
-	 */
 	public function setId($id) {
 		$this->id = $id;
 		return $this;
 	}
-	
-	/**
-	 *
-	 * @return the string
-	 */
 	public function getNombre() {
 		return $this->nombre;
 	}
-	
-	/**
-	 *
-	 * @param string $nombre        	
-	 */
 	public function setNombre(string $nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}
-	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getProgramas() {
-		return $this->programas;
+	public function getGruposId() {
+		return $this->gruposId;
 	}
-	
-	/**
-	 *
-	 * @param unknown_type $programas        	
-	 */
-	public function setProgramas($programas) {
-		$this->programas = $programas;
+	public function setGruposId($gruposId) {
+		$this->gruposId = $gruposId;
 		return $this;
 	}
 	

@@ -12,26 +12,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RegistroEstudiante
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="grupo_investigacion_id", type="integer")
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="GruposInvestigacion",inversedBy="registroEstudiante")
      */
     private $grupoInvestigacionId;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="estudiantes_id", type="integer")
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Estudiantes",inversedBy="registroEstudiante")
      */
     private $estudiantesId;
 
@@ -48,107 +40,76 @@ class RegistroEstudiante
      * @ORM\Column(name="fecha_retiro", type="date")
      */
     private $fechaRetiro;
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getGrupoInvestigacionId() {
+		return $this->grupoInvestigacionId;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $grupoInvestigacionId        	
+	 */
+	public function setGrupoInvestigacionId($grupoInvestigacionId) {
+		$this->grupoInvestigacionId = $grupoInvestigacionId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getEstudiantesId() {
+		return $this->estudiantesId;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $estudiantesId        	
+	 */
+	public function setEstudiantesId($estudiantesId) {
+		$this->estudiantesId = $estudiantesId;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getFechaIngreso() {
+		return $this->fechaIngreso;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $fechaIngreso        	
+	 */
+	public function setFechaIngreso(\DateTime $fechaIngreso) {
+		$this->fechaIngreso = $fechaIngreso;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the DateTime
+	 */
+	public function getFechaRetiro() {
+		return $this->fechaRetiro;
+	}
+	
+	/**
+	 *
+	 * @param \DateTime $fechaRetiro        	
+	 */
+	public function setFechaRetiro(\DateTime $fechaRetiro) {
+		$this->fechaRetiro = $fechaRetiro;
+		return $this;
+	}
+	
+    
+    
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set grupoInvestigacionId
-     *
-     * @param integer $grupoInvestigacionId
-     * @return RegistroEstudiante
-     */
-    public function setGrupoInvestigacionId($grupoInvestigacionId)
-    {
-        $this->grupoInvestigacionId = $grupoInvestigacionId;
-
-        return $this;
-    }
-
-    /**
-     * Get grupoInvestigacionId
-     *
-     * @return integer 
-     */
-    public function getGrupoInvestigacionId()
-    {
-        return $this->grupoInvestigacionId;
-    }
-
-    /**
-     * Set estudiantesId
-     *
-     * @param integer $estudiantesId
-     * @return RegistroEstudiante
-     */
-    public function setEstudiantesId($estudiantesId)
-    {
-        $this->estudiantesId = $estudiantesId;
-
-        return $this;
-    }
-
-    /**
-     * Get estudiantesId
-     *
-     * @return integer 
-     */
-    public function getEstudiantesId()
-    {
-        return $this->estudiantesId;
-    }
-
-    /**
-     * Set fechaIngreso
-     *
-     * @param \DateTime $fechaIngreso
-     * @return RegistroEstudiante
-     */
-    public function setFechaIngreso($fechaIngreso)
-    {
-        $this->fechaIngreso = $fechaIngreso;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaIngreso
-     *
-     * @return \DateTime 
-     */
-    public function getFechaIngreso()
-    {
-        return $this->fechaIngreso;
-    }
-
-    /**
-     * Set fechaRetiro
-     *
-     * @param \DateTime $fechaRetiro
-     * @return RegistroEstudiante
-     */
-    public function setFechaRetiro($fechaRetiro)
-    {
-        $this->fechaRetiro = $fechaRetiro;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaRetiro
-     *
-     * @return \DateTime 
-     */
-    public function getFechaRetiro()
-    {
-        return $this->fechaRetiro;
-    }
 }

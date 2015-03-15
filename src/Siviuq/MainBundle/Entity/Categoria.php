@@ -3,6 +3,8 @@
 namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Categoria
@@ -28,37 +30,46 @@ class Categoria
      */
     private $nombre;
 
-
+	/**
+	 * @OneToMany(targetEntity="Tutor",mappedBy="categoriaId")
+	 */
+    private $tutores;
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
+    
+    public function __construct()
     {
-        return $this->id;
+    	$this->tutores=new ArrayCollection();
     }
+	public function getId() {
+		return $this->id;
+	}
+	public function setId($id) {
+		$this->id = $id;
+		return $this;
+	}
+	public function getNombre() {
+		return $this->nombre;
+	}
+	public function setNombre(string $nombre) {
+		$this->nombre = $nombre;
+		return $this;
+	}
+	public function getTutores() {
+		return $this->tutores;
+	}
+	public function setTutores($tutores) {
+		$this->tutores = $tutores;
+		return $this;
+	}
+	
+    
+    
 
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     * @return Categoria
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string 
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
+	
+    
+    
 }
