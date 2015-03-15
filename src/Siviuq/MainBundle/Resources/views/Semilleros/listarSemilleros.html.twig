@@ -1,0 +1,19 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Semilleros {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/estiloBase.css') }}" rel="stylesheet" type="text/css"/>
+i{% endblock %}
+
+{% block body %}
+<div>
+<h2>Semilleros</h2>
+<ul>
+{%for semillero in semilleros%}
+<li>
+{{ semillero.nombre }}
+</li>
+{% endfor %}
+</ul>
+</div>
+{%  endblock %}

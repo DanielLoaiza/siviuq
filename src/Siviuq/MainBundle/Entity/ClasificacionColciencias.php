@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Clasificacion_colciencias
+ * ClasificacionColciencias
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Clasificacion_colciencias
+class ClasificacionColciencias
 {
     /**
      * @var integer

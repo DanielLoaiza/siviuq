@@ -65,12 +65,12 @@ class GruposInvestigacion
     
     /**
      * 
-     * @ORM\ManyToOne(targetEntity="Clasificacion_colciencias",inversedBy="gruposId")
+     * @ORM\ManyToOne(targetEntity="ClasificacionColciencias",inversedBy="gruposId")
      */
     private $clasificacionColciencias;
 	/**
 	 * 
-	 * @ORM\ManyToMany(targetEntity="Lineas_investigacion",inversedBy="grupos_investigacion")
+	 * @ORM\ManyToMany(targetEntity="LineasInvestigacion",inversedBy="grupos_investigacion")
 	 */
     private $lineaInvestigacion;
     
