@@ -41,7 +41,7 @@ class Semillero {
 	
 	/**
 	 * 
-	 * @ORM\OneToMany(targetEntity="Estudiantes",mappedBy="$semilleroFormacion")
+	 * @ORM\OneToMany(targetEntity="Estudiantes",mappedBy="semilleroFormacion")
 	 */
 	private $estudiantes;
 	
@@ -54,6 +54,7 @@ class Semillero {
 	{
 		$this->estudiantes=new ArrayCollection();
 		$this->proyectos=new ArrayCollection();
+		$this->grupos_Investigacion=new ArrayCollection();
 	}
 	
 	/**

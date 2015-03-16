@@ -7,5 +7,9 @@ siviuq_main_help:
     defaults: { _controller: SiviuqMainBundle:Default:ayuda }
     
 siviuq_semilleros_list:
-    path: /semilleros
+    path: /semilleros/listar
     defaults: {_controller: SiviuqMainBundle:Semillero:findAll }
+    
+siviuq_semilleros_oneSemi:
+    path: /semilleros/listar/{id}
+    defaults: {_controller: SiviuqMainBundle:Semillero:getById }

@@ -74,11 +74,17 @@ class GruposInvestigacion
 	 */
     private $lineaInvestigacion;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="Semillero", inversedBy="grupos_Investigacion")
+     */
+    private $semilleros;
+    
     public function __construct()
     {
     	$this->tutores=new ArrayCollection();
     	$this->registroEstudiante=new ArrayCollection();
     	$this->lineaInvestigacion=new ArrayCollection();
+    	$this->semilleros=new ArrayCollection();
     }
 	
 	/**
@@ -111,7 +117,7 @@ class GruposInvestigacion
 	 *
 	 * @param string $codigo        	
 	 */
-	public function setCodigo(string $codigo) {
+	public function setCodigo($codigo) {
 		$this->codigo = $codigo;
 		return $this;
 	}
@@ -128,7 +134,7 @@ class GruposInvestigacion
 	 *
 	 * @param string $nombre        	
 	 */
-	public function setNombre(string $nombre) {
+	public function setNombre($nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}
@@ -235,6 +241,25 @@ class GruposInvestigacion
 		$this->lineaInvestigacion = $lineaInvestigacion;
 		return $this;
 	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getSemilleros() {
+		return $this->semilleros;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $semilleros        	
+	 */
+	public function setSemilleros($semilleros) {
+		$this->semilleros = $semilleros;
+		return $this;
+	}
+	
+	
 	
     
     
