@@ -1,0 +1,60 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Semilleros {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/foundation.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div>
+<h2>Detalle Semillero</h2>
+<table border="1">
+<tr>
+<th>Nombre: </th>
+<td>{{ semillero.nombre }} </td>
+</tr>
+<tr>
+<th>Nota: </th>
+<td>{{ semillero.nota }} </td>
+</tr>
+<tr>
+<th>Linea de investigación </th>
+<td>{{ semillero.lineaInvestigacion.nombre }} </td>
+</tr>
+<tr>
+<th>Numero de Estudiantes</th>
+<td>{{ semillero.estudiantes.count() }} </td>
+</tr>
+<tr>
+	<th rowspan="{{ semillero.gruposinvestigacion.count()}}">Grupos de investigacion involucrados </th>
+{% for gruposInvestigacion in semillero.gruposinvestigacion %}
+{% if loop.index<2 %}
+<td>{{ gruposInvestigacion.nombre }}</td>
+</tr>
+{% endif %}
+{% if loop.index>1 %}
+<tr>
+<td>{{ gruposInvestigacion.nombre }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
+</div>
+<div>
+<h2>Proyectos desarrollados en semillero</h2>
+<table border="1">
+<tr>
+	<th>Titulo</th>
+	<th>Gasto</th>
+	<th>Duracion(meses)</th>
+</tr>
+{% for proyecto in semillero.proyectos %}
+<tr>
+<td>{{ proyecto.titulo }}</td>
+<td>{{ proyecto.gastoEfectivo }}</td>
+<td>{{ proyecto.duracion }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{%  endblock %}

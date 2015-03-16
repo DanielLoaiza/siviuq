@@ -1,0 +1,20 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Semilleros {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/foundation.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div>
+<h2>Semilleros</h2>
+<ul>
+{%for semillero in semilleros%}
+<li>
+<a href="{{ path('siviuq_semilleros_oneSemi',{'id':semillero.id})}}">
+{{ semillero.nombre }}
+</li>
+{% endfor %}
+</ul>
+</div>
+{%  endblock %}

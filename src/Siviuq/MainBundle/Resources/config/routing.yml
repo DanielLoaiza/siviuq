@@ -5,3 +5,11 @@ siviuq_main_homepage:
 siviuq_main_help:
     path:     /ayuda/{tema}
     defaults: { _controller: SiviuqMainBundle:Default:ayuda }
+    
+siviuq_semilleros_list:
+    path: /semilleros/listar
+    defaults: {_controller: SiviuqMainBundle:Semillero:findAll }
+    
+siviuq_semilleros_oneSemi:
+    path: /semilleros/listar/{id}
+    defaults: {_controller: SiviuqMainBundle:Semillero:getById }

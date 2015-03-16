@@ -103,7 +103,7 @@ class Estudiantes
     private $semilleroFormacion;
 
     /**
-     *  @OneToMany(targetEntity="RegistroEstudiante", mappedBy="$estudiantesId")
+     *  @OneToMany(targetEntity="RegistroEstudiante", mappedBy="estudiantesId")
      */
     private $registroEstudiante;
 	

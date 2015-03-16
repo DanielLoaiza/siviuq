@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Clasificacion_colciencias
+ * ClasificacionColciencias
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Clasificacion_colciencias
+class ClasificacionColciencias
 {
     /**
      * @var integer
@@ -51,7 +51,7 @@ class Clasificacion_colciencias
 	public function getNombre() {
 		return $this->nombre;
 	}
-	public function setNombre(string $nombre) {
+	public function setNombre($nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}

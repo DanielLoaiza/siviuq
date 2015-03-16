@@ -79,7 +79,7 @@ class Programa
 	 *
 	 * @param string $nombre        	
 	 */
-	public function setNombre(string $nombre) {
+	public function setNombre($nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}

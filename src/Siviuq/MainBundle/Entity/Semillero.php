@@ -14,6 +14,7 @@ class Semillero {
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
 	/**
@@ -32,14 +33,15 @@ class Semillero {
 	 * @ORM\Column(type="string")
 	 */
 	private $nombre;
+	
 	/**
-	 * @ManyToOne(targetEntity="Lineas_investigacion")
+	 * @ORM\ManyToOne(targetEntity="LineasInvestigacion")
 	 */
 	private $linea_investigacion;
 	
 	/**
 	 * 
-	 * @ORM\OneToMany(targetEntity="Estudiantes",mappedBy="$semilleroFormacion")
+	 * @ORM\OneToMany(targetEntity="Estudiantes",mappedBy="semilleroFormacion")
 	 */
 	private $estudiantes;
 	
@@ -50,9 +52,9 @@ class Semillero {
 	
 	public function __construct()
 	{
-		$this->linea_investigacion= new ArrayCollection();
 		$this->estudiantes=new ArrayCollection();
 		$this->proyectos=new ArrayCollection();
+		$this->grupos_Investigacion=new ArrayCollection();
 	}
 	
 	/**
