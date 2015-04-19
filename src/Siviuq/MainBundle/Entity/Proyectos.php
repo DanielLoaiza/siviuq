@@ -95,6 +95,7 @@ class Proyectos
 
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
 
      * @var integer
@@ -141,6 +142,8 @@ class Proyectos
      */
     private $estadoInforme;
 
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
 =======
 >>>>>>> parent of 18a12f3... proyecto controler
     public function __construct()
@@ -358,6 +361,7 @@ class Proyectos
 		return $this;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 *
 	 * @return the unknown_type
@@ -442,6 +446,10 @@ class Proyectos
 	 */
 	public function setEstadoInforme( $estadoInforme) {
 		$this->estadoInforme = $estadoInforme;
+=======
+    
+    
+>>>>>>> parent of 18a12f3... proyecto controler
 
 		return $this;
 	}

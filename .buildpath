@@ -3,7 +3,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
 	<buildpathentry kind="src" path="vendor/sebastian/recursion-context/src"/>
 	<buildpathentry kind="src" path="vendor/incenteev/composer-parameter-handler"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
@@ -23,6 +26,9 @@
 	<buildpathentry kind="src" path="vendor/symfony/monolog-bundle"/>
 	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Resources/stubs"/>
+<<<<<<< HEAD
+>>>>>>> parent of 18a12f3... proyecto controler
+=======
 >>>>>>> parent of 18a12f3... proyecto controler
 	<buildpathentry kind="src" path="vendor/doctrine/doctrine-cache-bundle"/>
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
@@ -93,6 +99,7 @@
 	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<buildpathentry kind="src" path="vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/Resources/stubs"/>
 =======
 	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/Text"/>
@@ -147,10 +154,16 @@
 	<buildpathentry kind="src" path="vendor/symfony/monolog-bundle"/>
 	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
 >>>>>>> parent of 18a12f3... proyecto controler
+=======
+	<buildpathentry kind="src" path="vendor/incenteev/composer-parameter-handler"/>
+	<buildpathentry kind="src" path="vendor/symfony/monolog-bundle"/>
+	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
+>>>>>>> parent of 18a12f3... proyecto controler
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
 	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
 	<buildpathentry kind="src" path="vendor/sensio/distribution-bundle"/>
 	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/File"/>
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
@@ -171,12 +184,17 @@
 >>>>>>> origin/master
 =======
 =======
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
 	<buildpathentry kind="src" path="vendor/doctrine/common/lib"/>
 	<buildpathentry kind="src" path="vendor/doctrine/lexer/lib"/>
 	<buildpathentry kind="src" path="vendor/kriswallsmith/assetic/src"/>
 	<buildpathentry kind="src" path="vendor/sensio/generator-bundle"/>
 	<buildpathentry kind="src" path="vendor/composer"/>
+<<<<<<< HEAD
+>>>>>>> parent of 18a12f3... proyecto controler
+=======
 >>>>>>> parent of 18a12f3... proyecto controler
 >>>>>>> origin/master
 </buildpath>
