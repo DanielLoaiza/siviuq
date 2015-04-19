@@ -4,6 +4,7 @@ namespace Siviuq\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Doctrine\Common\Collections;
 
 /**
  * Facultad
@@ -34,11 +35,17 @@ class Facultad
      * @ORM\OneToMany(targetEntity="Programa",mappedBy="facultadId")
      */
     private $programas;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Proyectos",mappedBy="proyectoId")
+     */
+    private $proyecto;
 	
     
     public function __construct()
     {
     	$this->programas=new ArrayCollection();
+    	$this->proyecto=new ArrayCollection();
     }
 	
 	/**
@@ -90,6 +97,23 @@ class Facultad
 	 */
 	public function setProgramas($programas) {
 		$this->programas = $programas;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getPryecto() {
+		return $this->proyecto;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $proyecto
+	 */
+	public function setProyecto($proyecto) {
+		$this->proyecto = $proyecto;
 		return $this;
 	}
 	

@@ -5,6 +5,7 @@ namespace Siviuq\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Proyectos
@@ -67,6 +68,18 @@ class Proyectos
 	 * @ManyToMany(targetEntity="Estudiantes",inversedBy="proyectoInvestigacion")
 	 */
     private $estudiantes;
+    
+    /**
+     * @var integer
+     * @ORM\ManyToOne(targetEntity="Facultad"))
+     */
+    private $facultad;
+    
+    /**
+     * @var integer
+     * @ORM\ManyToOne(targetEntity="Programa"))
+     */
+    private $programa;
     
     public function __construct()
     {
@@ -213,6 +226,41 @@ class Proyectos
 		$this->estudiantes = $estudiantes;
 		return $this;
 	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getFacultad() {
+		return $this->facultad;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $facultad
+	 */
+	public function setFacultad($facultad) {
+		$this->facultad = $facultad;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getPrograma() {
+		return $this->programa;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $programa
+	 */
+	public function setPrograma($programa) {
+		$this->programa = $programa;
+		return $this;
+	}
+	
 	
     
     
