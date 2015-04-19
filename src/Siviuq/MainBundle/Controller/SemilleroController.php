@@ -24,4 +24,25 @@ class SemilleroController extends Controller{
 		return $this->render('SiviuqMainBundle:Semilleros:detalleSemilleros.html.twig', array("semillero"=>$semillero));
 	}
 	
+	public function downloadAction($filename)
+	{
+		
+		$path = $this->get('kernel')->getRootDir(). "/../web/downloads/";
+		$content = file_get_contents($path.$filename);
+		
+		$response = new Response();
+		
+		//set headers
+		$response->headers->set('Content-Type', 'mime/type');
+		$response->headers->set('Content-Disposition', 'attachment;filename="'.$filename);
+		
+		$response->setContent($content);
+		return $response;
+	}
+	
+	public function mostrarAction()
+	{
+		return $this->render('SiviuqMainBundle:Semilleros:download.html.twig');
+	}
+	
 }

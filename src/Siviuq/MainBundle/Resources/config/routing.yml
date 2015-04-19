@@ -13,3 +13,11 @@ siviuq_semilleros_list:
 siviuq_semilleros_oneSemi:
     path: /semilleros/listar/{id}
     defaults: {_controller: SiviuqMainBundle:Semillero:getById }
+
+download_route:
+    pattern:  /download/{filename}
+    defaults: { _controller: SiviuqMainBundle:Semillero:download }
+    
+requisitos_download:
+    pattern: /requisitos
+    defaults: {_controller: SiviuqMainBundle:Semillero:mostrar}

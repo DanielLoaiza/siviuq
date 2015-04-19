@@ -1,0 +1,11 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Download {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/foundation.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<a href="{{ path('download_route',{'filename':'CONVOCATORIA INT. No. 02 PROYECTOS 2015.pdf'})}}">
+hola
+{%  endblock %}
