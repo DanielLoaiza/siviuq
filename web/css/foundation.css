@@ -7,15 +7,33 @@ meta.foundation-version {
 	color:white;
 }
 
+
 div#menu
 {
 	position:absolute;
 	width:65px;
 	height: 100%;
+	box-shadow: 7px 7px 7px rgba(0,0,0,0.3);
 	background-color: rgb(60,136,34);
 	overflow: hidden;
 	-webkit-transition:width 0.5s;
 	-moz -transition:width 0.5s;
+}
+
+header{
+	height: 200px;
+	box-shadow: 7px 7px 7px rgba(0,0,0,0.5);
+}
+.title1, .title2 {
+	color: white;
+	text-align: c;
+	margin-right: 10px;
+}
+
+.cabecera{
+	background: url("../Img/banner_quindio.jpg") no-repeat;
+	background-size: 100% 100%;
+	display: block;
 }
 div#menu:hover
 {
@@ -25,9 +43,9 @@ div#menu:hover
 div#logo-principal
 {
 	width: 48px;
-	height: 54px;
+	height: 48px;
 	margin:10px;
-	background-image: url(../img/quindio.png)
+	background-image: url(../img/icon.png);
 }
 
 div.contenedor-general
