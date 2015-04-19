@@ -9,12 +9,12 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 
 /**
- * Estudiantes
+ * Investigador
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Estudiantes
+class Investigador
 {
     /**
      * @var integer
@@ -88,19 +88,7 @@ class Estudiantes
      */
     private $semestre;
 
-    /**
-     * @var integer
-     *
-     * @ManyToMany(targetEntity="Proyectos",mappedBy="estudiantes")
-     */
-    private $proyectoInvestigacion;
 
-    /**
-     * @var integer
-     *
-     * @ManyToOne(targetEntity="Semillero",inversedBy="estudiantes")
-     */
-    private $semilleroFormacion;
 
     /**
      *  @OneToMany(targetEntity="RegistroEstudiante", mappedBy="estudiantesId")
@@ -143,7 +131,7 @@ class Estudiantes
 	 *
 	 * @param string $nombre        	
 	 */
-	public function setNombre(string $nombre) {
+	public function setNombre($nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}
@@ -160,7 +148,7 @@ class Estudiantes
 	 *
 	 * @param string $correo        	
 	 */
-	public function setCorreo(string $correo) {
+	public function setCorreo($correo) {
 		$this->correo = $correo;
 		return $this;
 	}
@@ -177,7 +165,7 @@ class Estudiantes
 	 *
 	 * @param string $direccion        	
 	 */
-	public function setDireccion(string $direccion) {
+	public function setDireccion($direccion) {
 		$this->direccion = $direccion;
 		return $this;
 	}
@@ -194,7 +182,7 @@ class Estudiantes
 	 *
 	 * @param string $telefono        	
 	 */
-	public function setTelefono(string $telefono) {
+	public function setTelefono($telefono) {
 		$this->telefono = $telefono;
 		return $this;
 	}
@@ -229,7 +217,7 @@ class Estudiantes
 	 *
 	 * @param string $cedula        	
 	 */
-	public function setCedula(string $cedula) {
+	public function setCedula($cedula) {
 		$this->cedula = $cedula;
 		return $this;
 	}
@@ -246,7 +234,7 @@ class Estudiantes
 	 *
 	 * @param string $observaciones        	
 	 */
-	public function setObservaciones(string $observaciones) {
+	public function setObservaciones($observaciones) {
 		$this->observaciones = $observaciones;
 		return $this;
 	}

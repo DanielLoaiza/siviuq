@@ -23,7 +23,7 @@ class RegistroEstudiante
     /**
      *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Estudiantes",inversedBy="registroEstudiante")
+     * @ORM\ManyToOne(targetEntity="Investigador",inversedBy="registroEstudiante")
      */
     private $estudiantesId;
 
