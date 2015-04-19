@@ -71,7 +71,7 @@ class Facultad
 	 *
 	 * @param string $nombre        	
 	 */
-	public function setNombre(string $nombre) {
+	public function setNombre($nombre) {
 		$this->nombre = $nombre;
 		return $this;
 	}
@@ -91,6 +91,11 @@ class Facultad
 	public function setProgramas($programas) {
 		$this->programas = $programas;
 		return $this;
+	}
+	
+	public function __toString()
+	{
+		return $this->nombre;
 	}
 	
     
