@@ -3,11 +3,44 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}<link href="{{ asset('css/foundation.css') }}" rel="stylesheet" type="text/css"/>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+<header class="cabecera">
+	</header>
+<div id="menu">
+
+	<div id="logo-principal"></div>
+	<div id="contenedor-general-primero" class="contenedor-general">
+		<div class="logo-interior"></div>
+		<p class="texto">Inicio</p>
+	</div>
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<p class="texto">Proyectos</p>
+	</div>
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<p class="texto">Semilleros</p>
+	</div>
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<p class="texto">Grupos</p>
+	</div>
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<p class="texto">Investigadores</p>
+	</div>
+</div>
+{% block body %}
+{%  endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
