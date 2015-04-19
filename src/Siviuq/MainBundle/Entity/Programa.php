@@ -42,17 +42,11 @@ class Programa
      * @ORM\OneToMany(targetEntity="GruposInvestigacion",mappedBy="programaId")
      */
     private $grupos_investigacion;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Proyectos",mappedBy="proyectoId")
-     */
-    private $proyectos;
 
 	
     public function __construct()
     {
     	$this->grupos_investigacion=new ArrayCollection();
-    	$this->proyectos=new ArrayCollection();
     }
 	
 	/**
@@ -125,22 +119,7 @@ class Programa
 		return $this;
 	}
 	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getProyectos() {
-		return $this->proyectos;
-	}
-	
-	/**
-	 *
-	 * @param unknown_type $proyectos
-	 */
-	public function setProyectos($proyectos) {
-		$this->proyectos = $proyectos;
-		return $this;
-	}
+    
     
 
 	

@@ -5,7 +5,6 @@ namespace Siviuq\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\ManyToMany;
-use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * Proyectos
@@ -95,6 +94,7 @@ class Proyectos
     private $investigadores;
 
     
+<<<<<<< HEAD
     /**
 
      * @var integer
@@ -141,6 +141,8 @@ class Proyectos
      */
     private $estadoInforme;
 
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
     public function __construct()
     {
     	$this->tutores=new ArrayCollection();
@@ -530,41 +532,6 @@ class Proyectos
 		$this->estadoInforme = $estadoInforme;
 		return $this;
 	}
-	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getFacultad() {
-		return $this->facultad;
-	}
-	
-	/**
-	 *
-	 * @param unknown_type $facultad
-	 */
-	public function setFacultad($facultad) {
-		$this->facultad = $facultad;
-		return $this;
-	}
-	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getPrograma() {
-		return $this->programa;
-	}
-	
-	/**
-	 *
-	 * @param unknown_type $programa
-	 */
-	public function setPrograma($programa) {
-		$this->programa = $programa;
-		return $this;
-	}
-	
 	
     
 }
