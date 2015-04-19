@@ -93,9 +93,10 @@ class Proyectos
 	 * @ManyToMany(targetEntity="Investigador")
 	 */
     private $investigadores;
+
     
     /**
-<<<<<<< HEAD
+
      * @var integer
      * @ORM\ManyToOne(targetEntity="Facultad"))
      */
@@ -107,7 +108,8 @@ class Proyectos
      */
     private $programa;
     
-=======
+    /**
+>>>>>>> origin/master
      * @ManyToOne(targetEntity="LineasInvestigacion")
      */
     private $lineaInvestigacion;
@@ -138,7 +140,7 @@ class Proyectos
      * @ORM\Column(name="estadoInforme", type="string", length=15)
      */
     private $estadoInforme;
->>>>>>> origin/master
+
     public function __construct()
     {
     	$this->tutores=new ArrayCollection();
@@ -351,6 +353,94 @@ class Proyectos
 	 */
 	public function setInvestigadores($investigadores) {
 		$this->investigadores = $investigadores;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getLineaInvestigacion() {
+		return $this->lineaInvestigacion;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $lineaInvestigacion        	
+	 */
+	public function setLineaInvestigacion($lineaInvestigacion) {
+		$this->lineaInvestigacion = $lineaInvestigacion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getInvestigadorPrincipal() {
+		return $this->investigadorPrincipal;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $investigadorPrincipal        	
+	 */
+	public function setInvestigadorPrincipal($investigadorPrincipal) {
+		$this->investigadorPrincipal = $investigadorPrincipal;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getHorasInvestigadorPrincipal() {
+		return $this->horasInvestigadorPrincipal;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$horasInvestigadorPrincipal
+	 */
+	public function setHorasInvestigadorPrincipal($horasInvestigadorPrincipal) {
+		$this->horasInvestigadorPrincipal = $horasInvestigadorPrincipal;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getHorasCoinvestigadores() {
+		return $this->horasCoinvestigadores;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$horasCoinvestigadores
+	 */
+	public function setHorasCoinvestigadores($horasCoinvestigadores) {
+		$this->horasCoinvestigadores = $horasCoinvestigadores;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getEstadoInforme() {
+		return $this->estadoInforme;
+	}
+	
+	/**
+	 *
+	 * @param string $estadoInforme        	
+	 */
+	public function setEstadoInforme( $estadoInforme) {
+		$this->estadoInforme = $estadoInforme;
+
 		return $this;
 	}
 	
