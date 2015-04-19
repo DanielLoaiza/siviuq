@@ -42,7 +42,7 @@ class SemilleroController extends Controller{
 	
 	public function mostrarAction()
 	{
-		return $this->render('SiviuqMainBundle:Semilleros:download.html.twig');
+		return $this->render('SiviuqMainBundle:Principal:Principal.html.twig');
 	}
 	
 }

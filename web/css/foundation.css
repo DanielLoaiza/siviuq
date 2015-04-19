@@ -1,6 +1,60 @@
 meta.foundation-version {
   font-family: "/5.5.1/"; }
+*{
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana;
+	color:white;
+}
 
+div#menu
+{
+	position:absolute;
+	width:65px;
+	height: 100%;
+	background-color: rgb(60,136,34);
+	overflow: hidden;
+	-webkit-transition:width 0.5s;
+	-moz -transition:width 0.5s;
+}
+div#menu:hover
+{
+	width: 200px;
+}
+
+div#logo-principal
+{
+	width: 48px;
+	height: 54px;
+	margin:10px;
+	background-image: url(../img/quindio.png)
+}
+
+div.contenedor-general
+{
+	width: 150px;
+	height: 40px;
+	margin-left:10px;
+	margin-top: 12px;
+}
+div.logo-interior
+{
+	width: 42px;
+	height: 36px;
+	background-image:url("../img/menu.png");
+	float: left; 
+}
+
+p.texto
+{
+	margin-left: 60px;
+	line-height: 35px;
+}
+
+div#contenedor-general-primero
+{
+	margin-top: 70px;
+}
 meta.foundation-mq-small {
   font-family: "/only screen/";
   width: 0; }

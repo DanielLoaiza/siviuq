@@ -41,9 +41,9 @@ class Semillero {
 	
 	/**
 	 * 
-	 * @ORM\OneToMany(targetEntity="Estudiantes",mappedBy="semilleroFormacion")
+	 * @ORM\OneToMany(targetEntity="Investigador",mappedBy="semilleroFormacion")
 	 */
-	private $estudiantes;
+	private $investigadores;
 	
 	/**
 	 * @ManyToMany(targetEntity="Proyectos",mappedBy="semillerosId")
@@ -52,7 +52,7 @@ class Semillero {
 	
 	public function __construct()
 	{
-		$this->estudiantes=new ArrayCollection();
+		$this->investigadores=new ArrayCollection();
 		$this->proyectos=new ArrayCollection();
 		$this->grupos_Investigacion=new ArrayCollection();
 	}
@@ -163,16 +163,16 @@ class Semillero {
 	 *
 	 * @return the unknown_type
 	 */
-	public function getEstudiantes() {
-		return $this->estudiantes;
+	public function getInvestigadores() {
+		return $this->investigadores;
 	}
 	
 	/**
 	 *
 	 * @param unknown_type $estudiantes        	
 	 */
-	public function setEstudiantes($estudiantes) {
-		$this->estudiantes = $estudiantes;
+	public function setEstudiantes($investigadores) {
+		$this->investigadores = $investigadores;
 		return $this;
 	}
 	
