@@ -73,7 +73,7 @@ class Proyectos
 
      /**
      * 
-     * @ManyToMany(targetEntity="Semillero", inversedBy="$proyectoInvestigacionId")
+     * @ManyToMany(targetEntity="Semillero", inversedBy="$proyectos")
      */
     private $semillerosId;
     
