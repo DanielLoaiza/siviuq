@@ -93,6 +93,9 @@ class Proyectos
 	 */
     private $investigadores;
 
+    
+<<<<<<< HEAD
+<<<<<<< HEAD
     /**
 
      * @var integer
@@ -139,6 +142,10 @@ class Proyectos
      */
     private $estadoInforme;
 
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
+=======
+>>>>>>> parent of 18a12f3... proyecto controler
     public function __construct()
     {
     	$this->tutores=new ArrayCollection();
@@ -175,10 +182,9 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$numeroProyecto
+	 * @param string $numeroProyecto        	
 	 */
-	public function setNumeroProyecto($numeroProyecto) {
+	public function setNumeroProyecto( $numeroProyecto) {
 		$this->numeroProyecto = $numeroProyecto;
 		return $this;
 	}
@@ -193,10 +199,9 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$numeroConvocatoria
+	 * @param string $numeroConvocatoria        	
 	 */
-	public function setNumeroConvocatoria($numeroConvocatoria) {
+	public function setNumeroConvocatoria( $numeroConvocatoria) {
 		$this->numeroConvocatoria = $numeroConvocatoria;
 		return $this;
 	}
@@ -211,10 +216,9 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$titulo
+	 * @param string $titulo        	
 	 */
-	public function setTitulo($titulo) {
+	public function setTitulo( $titulo) {
 		$this->titulo = $titulo;
 		return $this;
 	}
@@ -265,10 +269,9 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$fechaInicio
+	 * @param \DateTime $fechaInicio        	
 	 */
-	public function setFechaInicio($fechaInicio) {
+	public function setFechaInicio( $fechaInicio) {
 		$this->fechaInicio = $fechaInicio;
 		return $this;
 	}
@@ -283,10 +286,9 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$fechaFin
+	 * @param \DateTime $fechaFin        	
 	 */
-	public function setFechaFin($fechaFin) {
+	public function setFechaFin( $fechaFin) {
 		$this->fechaFin = $fechaFin;
 		return $this;
 	}
@@ -359,21 +361,38 @@ class Proyectos
 		return $this;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 *
-	 * @return the integer
+	 * @return the unknown_type
 	 */
-	public function getFacultad() {
-		return $this->facultad;
+	public function getLineaInvestigacion() {
+		return $this->lineaInvestigacion;
 	}
 	
 	/**
 	 *
-	 * @param
-	 *        	$facultad
+	 * @param unknown_type $lineaInvestigacion        	
 	 */
-	public function setFacultad($facultad) {
-		$this->facultad = $facultad;
+	public function setLineaInvestigacion($lineaInvestigacion) {
+		$this->lineaInvestigacion = $lineaInvestigacion;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getInvestigadorPrincipal() {
+		return $this->investigadorPrincipal;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $investigadorPrincipal        	
+	 */
+	public function setInvestigadorPrincipal($investigadorPrincipal) {
+		$this->investigadorPrincipal = $investigadorPrincipal;
 		return $this;
 	}
 	
@@ -381,17 +400,57 @@ class Proyectos
 	 *
 	 * @return the integer
 	 */
-	public function getPrograma() {
-		return $this->programa;
+	public function getHorasInvestigadorPrincipal() {
+		return $this->horasInvestigadorPrincipal;
 	}
 	
 	/**
 	 *
 	 * @param
-	 *        	$programa
+	 *        	$horasInvestigadorPrincipal
 	 */
-	public function setPrograma($programa) {
-		$this->programa = $programa;
+	public function setHorasInvestigadorPrincipal($horasInvestigadorPrincipal) {
+		$this->horasInvestigadorPrincipal = $horasInvestigadorPrincipal;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the integer
+	 */
+	public function getHorasCoinvestigadores() {
+		return $this->horasCoinvestigadores;
+	}
+	
+	/**
+	 *
+	 * @param
+	 *        	$horasCoinvestigadores
+	 */
+	public function setHorasCoinvestigadores($horasCoinvestigadores) {
+		$this->horasCoinvestigadores = $horasCoinvestigadores;
+		return $this;
+	}
+	
+	/**
+	 *
+	 * @return the string
+	 */
+	public function getEstadoInforme() {
+		return $this->estadoInforme;
+	}
+	
+	/**
+	 *
+	 * @param string $estadoInforme        	
+	 */
+	public function setEstadoInforme( $estadoInforme) {
+		$this->estadoInforme = $estadoInforme;
+=======
+    
+    
+>>>>>>> parent of 18a12f3... proyecto controler
+
 		return $this;
 	}
 	
@@ -475,16 +534,12 @@ class Proyectos
 	
 	/**
 	 *
-	 * @param
-	 *        	$estadoInforme
+	 * @param string $estadoInforme        	
 	 */
-	public function setEstadoInforme($estadoInforme) {
+	public function setEstadoInforme( $estadoInforme) {
 		$this->estadoInforme = $estadoInforme;
 		return $this;
 	}
-	
-	
-	
 	
     
 }

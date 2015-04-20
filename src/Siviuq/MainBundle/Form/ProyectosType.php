@@ -26,7 +26,6 @@ class ProyectosType extends AbstractType
        $this->facultades
     ),
     'required'    => true,
-	'label'		  =>'seleccione una facultad'
 ));
 	}
 	
