@@ -34,3 +34,7 @@ download_route:
 requisitos_download:
     pattern: /requisitos
     defaults: {_controller: SiviuqMainBundle:Semillero:mostrar}
+    
+siviuq_proyectos_listar:
+    pattern: /proyectos/listar
+    defaults: {_controller: SiviuqMainBundle:Proyectos:mostrar}

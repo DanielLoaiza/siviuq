@@ -21,11 +21,6 @@
 <th>Linea de investigación </th>
 <td>{{ semillero.lineaInvestigacion.nombre }} </td>
 </tr>
-<tr>
-<th>Numero de Estudiantes</th>
-<td>{{ semillero.investigadores.count() }} </td>
-</tr>
-<tr>
 	<th rowspan="{{ semillero.gruposinvestigacion.count()}}">Grupos de investigacion involucrados </th>
 {% for gruposInvestigacion in semillero.gruposinvestigacion %}
 {% if loop.index<2 %}

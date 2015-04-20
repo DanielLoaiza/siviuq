@@ -1,0 +1,39 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Listar proyectos {% endblock %}
+
+{% block body %}
+{{ form_start(form,{'attr': {'id': 'form_proyectos_list'}}) }}
+<div class="form_error">{{ form_errors(form) }}</div>
+<div class="form_bloque"> 
+	<div class="form_error">{{ form_errors(form.facultad) }}</div>
+	<div class="form_label">{{ form_label(form.facultad) }}</div> 
+	<div class="form_input">{{ form_widget(form.facultad) }}</div> 
+</div>
+{{ form_end(form) }}
+
+<table border="1">
+{% for proyecto in proyectos %}
+<tr>
+<th>Titulo</th>
+<th>Duración(meses)</th>
+<th>Grupo de investigación</th>
+<th>Linea de investigación</th>
+<th>Investigador principal</th>
+<th>Estado del informe</th>
+<th>Ver Detalles</th>
+</tr>
+<tr>
+<td>{{ proyecto.titulo }}</td>
+<td>{{ proyecto.duracion }}</td>
+<td>{{ proyecto.grupoinvestigacionId.nombre }}</td>
+<td>{{ proyecto.lineaInvestigacion.nombre }}</td>
+<td>{{ proyecto.investigadorPrincipal.nombre }}</td>
+<td>{{ proyecto.estadoInforme }}</td>
+<td><img src="{{
+     asset('img/verDetalle.png') 
+  }}" alt="detalle" /> </td>
+</tr>
+{% endfor %}
+</table>
+{%  endblock %}
