@@ -21,8 +21,9 @@ class ProyectosType extends AbstractType
 	
 	public function buildForm(FormBuilderInterface $builder,array $options)
 	{
-		$builder->add('facultad', 'choice', array(
-    'choices' => array($this->facultades
+		$builder->add('Facultad', 'choice', array(
+    'choices' => array(
+       $this->facultades
     ),
     'required'    => true,
 	'label'		  =>'seleccione una facultad'
