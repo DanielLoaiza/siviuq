@@ -13,6 +13,19 @@ siviuq_semilleros_list:
 siviuq_semilleros_oneSemi:
     path: /semilleros/listar/{id}
     defaults: {_controller: SiviuqMainBundle:Semillero:getById }
+    
+siviuq_main_addCategoria:
+    path:     /categoria/add/{nombre}
+    defaults: { _controller: SiviuqMainBundle:Categoria:add }
+    
+siviuq_main_updateCategoria:
+    path:     categoria/update/{id}/{nombre}
+    defaults: { _controller: SiviuqMainBundle:Categoria:update }
+    
+siviuq_main_deleteCategoria:
+    path:     categoria/delete/{id}/
+    defaults: { _controller: SiviuqMainBundle:Categoria:delete }
+
 
 download_route:
     pattern:  /download/{filename}
