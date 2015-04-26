@@ -1,0 +1,90 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Convocatoria</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicia</th>
+                <td>{{ entity.fechaInicia|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fechafin</th>
+                <td>{{ entity.fechaFin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ entity.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+      <table class="records_list">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Grupo de Investigación</th>
+                <th>Linea de investigación</th>
+                 <th>Investigador Principal</th>
+                <th>Facultad</th>
+                <th>Programa</th>
+                <th>Descargas</th>
+                <th>Revisión</th>
+                <td>Decisión</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proyecto in proyectos %}
+            <tr>
+                <td>{{ proyecto.titulo }}</td>
+                <td>{{ proyecto.grupoInvestigacionId.nombre }}</td>
+               	<td>{{ proyecto.lineaInvestigacion.nombre }}</td>
+                <td>{{ proyecto.investigadorPrincipal.nombre }}</td>
+                <td>{{ proyecto.grupoInvestigacionId.programaId.facultadId.nombre }}</td>
+                <td>{{ proyecto.grupoInvestigacionId.programaId.nombre }}</td>
+                <td>
+                        <a href="{{ path('download_file', { 'filename': proyecto.path }) }}"><img src="{{
+    					 asset('img/pdfIcon.png') }}"title="Descargar Propuesta"</img></a>
+                   
+                        <a href="{{ path('download_file', { 'filename': proyecto.path2 }) }}"><img src="{{
+    					 asset('img/excelIcon.png') }}"title="Descargar Cuadro Presupuestal"</img></a>
+    					 
+                </td>
+                <td>
+                 <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/review.png') }}"title="Enviar para revisión con par"</img></a>     
+                </td> 
+                <td>
+                	 <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/accept.png') }}"title="Aceptar proyecto"</img></a>
+    				<a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/reject.png') }}"title="Rechazar proyecto"</img></a>  
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('convocatoria') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

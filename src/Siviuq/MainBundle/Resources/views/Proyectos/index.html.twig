@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Proyectos list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numeroproyecto</th>
+                <th>Titulo</th>
+                <th>Gastoefectivo</th>
+                <th>Duracion</th>
+                <th>Fechainicio</th>
+                <th>Fechafin</th>
+                <th>Horasinvestigadorprincipal</th>
+                <th>Horascoinvestigadores</th>
+                <th>Estadoinforme</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('proyectos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.numeroProyecto }}</td>
+                <td>{{ entity.titulo }}</td>
+                <td>{{ entity.gastoEfectivo }}</td>
+                <td>{{ entity.duracion }}</td>
+                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.horasInvestigadorPrincipal }}</td>
+                <td>{{ entity.horasCoinvestigadores }}</td>
+                <td>{{ entity.estadoInforme }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('proyectos_show', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('proyectos_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

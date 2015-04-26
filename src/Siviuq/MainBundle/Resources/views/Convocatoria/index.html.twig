@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+   <h3 class="titulos">Convocatorias</h3>
+	<br>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+ {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('convocatoria_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{% if entity.fechaInicia %}{{ entity.fechaInicia|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ entity.estado }}</td>
+                <td><a href="{{ path('convocatoria_show', { 'id': entity.id }) }}"><img src="{{
+     					asset('img/show.png') }}" title="Mostrar"</img></a>
+                    
+                    <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
+    					          
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+       <br>
+    <br>
+    
+    <div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('convocatoria_new') }}' "> Crear Convocatoria</button>
+	</div>
+    {% endblock %}

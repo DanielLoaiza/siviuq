@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Proyectos</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Numeroproyecto</th>
+                <td>{{ entity.numeroProyecto }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ entity.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Gastoefectivo</th>
+                <td>{{ entity.gastoEfectivo }}</td>
+            </tr>
+            <tr>
+                <th>Duracion</th>
+                <td>{{ entity.duracion }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{{ entity.fechaInicio|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fechafin</th>
+                <td>{{ entity.fechaFin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Horasinvestigadorprincipal</th>
+                <td>{{ entity.horasInvestigadorPrincipal }}</td>
+            </tr>
+            <tr>
+                <th>Horascoinvestigadores</th>
+                <td>{{ entity.horasCoinvestigadores }}</td>
+            </tr>
+            <tr>
+                <th>Estadoinforme</th>
+                <td>{{ entity.estadoInforme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('proyectos') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

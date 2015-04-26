@@ -1,3 +1,11 @@
+siviuq_main_convocatoria:
+    resource: "@SiviuqMainBundle/Resources/config/routing/convocatoria.yml"
+    prefix:   /convocatoria
+
+siviuq_main_proyectos:
+    resource: "@SiviuqMainBundle/Resources/config/routing/proyectos.yml"
+    prefix:   /proyectos
+
 siviuq_main_homepage:
     path:     /hello/{name}
     defaults: { _controller: SiviuqMainBundle:Default:index }
@@ -25,3 +33,9 @@ requisitos_download:
 siviuq_proyectos_listar:
     pattern: /proyectos/listar
     defaults: {_controller: SiviuqMainBundle:Proyectos:mostrar}
+    
+siviuq_proyectos_actualizar:
+    pattern: /proyectos/actualizar
+    defaults: {_controller: SiviuqMainBundle:Proyectos:actualizarProyectoFacultad}
+    
+ 

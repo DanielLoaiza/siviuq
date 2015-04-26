@@ -52,16 +52,7 @@ class GruposInvestigacion
      */
     private $programaId;
     
-    /**
-     * @ManyToMany(targetEntity="Tutor",inversedBy="grupos")
-     */
-    private $tutores;
 	
-    /**
-     * 
-     * @OneToMany(targetEntity="RegistroEstudiante",mappedBy="grupoInvestigacionId")
-     */
-    private $registroEstudiante;
     
     /**
      * 
@@ -74,17 +65,12 @@ class GruposInvestigacion
 	 */
     private $lineaInvestigacion;
     
-    /**
-     * @ORM\ManyToMany(targetEntity="Semillero", inversedBy="grupos_Investigacion")
-     */
-    private $semilleros;
+    
     
     public function __construct()
     {
-    	$this->tutores=new ArrayCollection();
-    	$this->registroEstudiante=new ArrayCollection();
+    	
     	$this->lineaInvestigacion=new ArrayCollection();
-    	$this->semilleros=new ArrayCollection();
     }
 	
 	/**
@@ -151,7 +137,7 @@ class GruposInvestigacion
 	 *
 	 * @param \DateTime $fechaConformacion        	
 	 */
-	public function setFechaConformacion(\DateTime $fechaConformacion) {
+	public function setFechaConformacion( $fechaConformacion) {
 		$this->fechaConformacion = $fechaConformacion;
 		return $this;
 	}
@@ -174,39 +160,6 @@ class GruposInvestigacion
 		return $this;
 	}
 	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getTutores() {
-		return $this->tutores;
-	}
-	
-	/**
-	 *
-	 * @param unknown_type $tutores        	
-	 */
-	public function setTutores($tutores) {
-		$this->tutores = $tutores;
-		return $this;
-	}
-	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getRegistroEstudiante() {
-		return $this->registroEstudiante;
-	}
-	
-	/**
-	 *
-	 * @param unknown_type $registroEstudiante        	
-	 */
-	public function setRegistroEstudiante($registroEstudiante) {
-		$this->registroEstudiante = $registroEstudiante;
-		return $this;
-	}
 	
 	/**
 	 *
@@ -242,21 +195,10 @@ class GruposInvestigacion
 		return $this;
 	}
 	
-	/**
-	 *
-	 * @return the unknown_type
-	 */
-	public function getSemilleros() {
-		return $this->semilleros;
-	}
 	
-	/**
-	 *
-	 * @param unknown_type $semilleros        	
-	 */
-	public function setSemilleros($semilleros) {
-		$this->semilleros = $semilleros;
-		return $this;
+	public function __toString()
+	{
+		return $this->nombre;
 	}
 	
 	

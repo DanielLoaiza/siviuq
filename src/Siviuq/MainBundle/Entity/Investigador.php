@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 
 /**
- * Investigador
+ * Estudiantes
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -81,24 +81,11 @@ class Investigador
      */
     private $programaAcademico;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="semestre", type="integer")
-     */
-    private $semestre;
 
 
-
-    /**
-     *  @OneToMany(targetEntity="RegistroEstudiante", mappedBy="estudiantesId")
-     */
-    private $registroEstudiante;
 	
     public function __construct()
     {
-    	$this->proyectoInvestigacion=new ArrayCollection();
-    	$this->registroEstudiante=new ArrayCollection();
     }
 	
 	/**
@@ -326,6 +313,11 @@ class Investigador
 	public function setRegistroEstudiante($registroEstudiante) {
 		$this->registroEstudiante = $registroEstudiante;
 		return $this;
+	}
+	
+	public function __toString()
+	{
+		return $this->nombre;
 	}
 	
     

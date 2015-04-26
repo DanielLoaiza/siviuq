@@ -1,0 +1,81 @@
+{%  extends "::base.html.twig" %}
+
+{% block title %} Listar proyectos {% endblock %}
+
+{% block body %}
+{{ form_start(form,{'attr': {'id': 'form_proyectos_list'}}) }}
+<div class="form_error">{{ form_errors(form) }}</div>
+<div class="form_bloque"> 
+	<div class="form_error">{{ form_errors(form.facultad) }}</div>
+	<div class="form_label">{{ form_label(form.facultad) }}</div> 
+	<div class="form_input">{{ form_widget(form.facultad, {'attr': {'class': 'combobox'}}) }}</div> 
+</div>
+
+<div class="form_bloque"> 
+	<div class="form_label">{{ form_label(form.buscar) }}</div> 
+	<div class="form_input">{{ form_widget(form.buscar, {'attr': {'id': 'btnBuscar'}}) }}</div> 
+</div>
+{{ form_end(form) }}
+<div id="tabla">
+<table  border="1">
+<tr>
+<th>Titulo</th>
+<th>Duración(meses)</th>
+<th>Grupo de investigación</th>
+<th>Linea de investigación</th>
+<th>Investigador principal</th>
+<th>Estado del informe</th>
+<th>Ver Detalles</th>
+</tr>
+{% for proyecto in proyectos %}
+<tr>
+<td>{{ proyecto.titulo }}</td>
+<td>{{ proyecto.duracion }}</td>
+<td>{{ proyecto.grupoinvestigacionId.nombre }}</td>
+<td>{{ proyecto.lineaInvestigacion.nombre }}</td>
+<td>{{ proyecto.investigadorPrincipal.nombre }}</td>
+<td>{{ proyecto.estadoInforme }}</td>
+<td><img src="{{
+     asset('img/verDetalle.png') 
+  }}" /> </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{%  endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+
+
+        $('#siviuq_mainbundle_proyectos_buscar').click(function(){
+        	var facultadId = $("#siviuq_mainbundle_proyectos_facultad").val();
+        	var route='{{ path('siviuq_proyectos_actualizar')}}';
+        	console.log("{{ path('siviuq_proyectos_actualizar')}}");
+        	
+        	$.ajax({
+            	type: 'POST',
+        		url: route,
+        		data: 'facultadId='+facultadId,
+//         		dataType: "html",
+        		success: function (response){
+            		$('#tabla').html(response);
+            	}
+            })
+        	
+               // type: "POST",
+               //{{ path('siviuq_proyectos_actualizar')}}
+                //url: '<?php echo url_for('/proyectos/actualizar'); ?>',
+				//data: '<?php echo url_for('/proyectos/actualizar'); ?>',
+                //data: "siviuq_mainbundle_proyectos_facultad="+facultadId,
+                //dataType: "html",
+               // success: function(msg){
+                  //  $("#tabla").html(msg);
+                    //Ahi va el nombre del contenedor de la tabla (id), no se si pueda poner el id
+                    //de la tabla. En mi aplicacion lo hicimos con el id de un div que contiene la tabla
+                //}
+       
+});
+
+
+</script>
+{% endblock %}
