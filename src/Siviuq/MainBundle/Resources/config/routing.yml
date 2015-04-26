@@ -4,38 +4,5 @@ siviuq_main_convocatoria:
 
 siviuq_main_proyectos:
     resource: "@SiviuqMainBundle/Resources/config/routing/proyectos.yml"
-    prefix:   /proyectos
-
-siviuq_main_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SiviuqMainBundle:Default:index }
-
-siviuq_main_help:
-    path:     /ayuda/{tema}
-    defaults: { _controller: SiviuqMainBundle:Default:ayuda }
+    prefix:   /proyectos    
     
-siviuq_semilleros_list:
-    path: /semilleros/listar
-    defaults: {_controller: SiviuqMainBundle:Semillero:findAll }
-    
-siviuq_semilleros_oneSemi:
-    path: /semilleros/listar/{id}
-    defaults: {_controller: SiviuqMainBundle:Semillero:getById }
-
-download_route:
-    pattern:  /download/{filename}
-    defaults: { _controller: SiviuqMainBundle:Semillero:download }
-    
-requisitos_download:
-    pattern: /requisitos
-    defaults: {_controller: SiviuqMainBundle:Semillero:mostrar}
-    
-siviuq_proyectos_listar:
-    pattern: /proyectos/listar
-    defaults: {_controller: SiviuqMainBundle:Proyectos:mostrar}
-    
-siviuq_proyectos_actualizar:
-    pattern: /proyectos/actualizar
-    defaults: {_controller: SiviuqMainBundle:Proyectos:actualizarProyectoFacultad}
-    
- 

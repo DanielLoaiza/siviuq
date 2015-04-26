@@ -107,6 +107,17 @@ class Proyectos
      */
     private $grupoInvestigacionId;
 
+
+    /**
+     * 
+     * @ManyToMany(targetEntity="Tutor", inversedBy="$proyectoInvestigacionId")
+     */
+    private $tutores;
+
+	/**
+	 * @ManyToMany(targetEntity="Investigador")
+	 */
+    private $investigadores;
     
     /**
      * @ManyToOne(targetEntity="LineasInvestigacion")
@@ -145,6 +156,7 @@ class Proyectos
      * @ORM\Column(name="estadoInforme", type="string", length=15)
      */
     private $estadoInforme;
+
     
     /**
      * @var string
@@ -152,6 +164,7 @@ class Proyectos
      */
     private $estado;
     
+
     public function __construct()
     {
     
@@ -333,6 +346,7 @@ class Proyectos
 		return $this;
 	}
 	
+
 	/**
 	 *
 	 * @return the unknown_type
@@ -463,6 +477,7 @@ class Proyectos
 		return '/bundles/siviuqmain/uploads';
 	}
 	
+
 	/**
 	 * @ORM\PostPersist()
 	 * @ORM\PostUpdate()

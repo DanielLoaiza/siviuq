@@ -245,3 +245,4 @@ class FacultadController extends Controller
         ;
     }
 }
+
