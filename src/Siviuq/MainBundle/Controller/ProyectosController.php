@@ -15,18 +15,6 @@ use Siviuq\MainBundle\Form\ProyectosType2;
  */
 class ProyectosController extends Controller
 {
-	public function mostrarAction()
-	{
-		$em= $this->getDoctrine()->getManager();
-	
-		$facultades=$em->getRepository('SiviuqMainBundle:Facultad')->findAll();
-		$proyectos=$em->getRepository('SiviuqMainBundle:Proyectos')->findAll();
-	
-		$form= $this->createForm(new ProyectosType());
-		return $this->render("SiviuqMainBundle:Proyectos:listarProyectos.html.twig",array(
-				"form"=>$form->createView(),"facultades"=>$facultades,"proyectos"=>$proyectos
-		));
-	}
 
     /**
      * Lists all Proyectos entities.
@@ -214,6 +202,16 @@ class ProyectosController extends Controller
     		$entity->setNumeroConvocatoria($convocatoria);
     		$em->persist($entity);
     		$em->flush();
+    		
+    		$mailer = $this->get('mailer');
+    		$message = $mailer->createMessage()
+    		->setSubject('You have Completed Registration!')
+    		->setFrom('viceInvestigaciones@noReply')
+    		->setTo('danielfloaiza@gmail.com')
+    		->setBody(
+    				'Te has registrado exitosamente en la convocatoria '.$convocatoria->getNombre().' proximamente daremos información'
+    		);
+    		$mailer->send($message);
     
     		return $this->redirect($this->generateUrl('proyectos_show', array('id' => $entity->getId())));
     	}

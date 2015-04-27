@@ -22,12 +22,15 @@ class ConvocatoriaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+	
+        
         $entities = $em->getRepository('SiviuqMainBundle:Convocatoria')->findAll();
 
         return $this->render('SiviuqMainBundle:Convocatoria:index.html.twig', array(
             'entities' => $entities,
         ));
+        
+        
     }
     
     public function convocatoriasInvestigadorAction()
