@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Aplicar a Convocatoria</h1>
+
+    {{ form(form) }}
+	<h3>Los formatos que debe subir deben ser los siguientes</h3>
+	<a href="{{ path('download_file', { 'filename': 'present_proyec.doc' }) }}"><img src="{{
+    					 asset('img/word.png') }}"title="Descargar Formato Propuesta"</img></a>
+                        <a href="{{ path('download_file', { 'filename': 'cuadros_presu.xls' }) }}"><img src="{{
+    					 asset('img/excelIcon.png') }}"title="Descargar Formato Cuadro Presupuestal"</img></a>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('download_file',{ 'filename': entity.numeroConvocatoria.path }) }}">
+            No olvide consultar los requisitos de la convocatoria 
+        </a>
+    </li>
+</ul>
+{% endblock %}

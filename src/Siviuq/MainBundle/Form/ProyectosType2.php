@@ -14,15 +14,27 @@ class ProyectosType2 extends AbstractType
 	
 	public function buildForm(FormBuilderInterface $builder,array $options)
 	{
-// 		$builder->add('facultad', 'choice', array(
-//     'choices' => array($this->facultades
-//     ),
-//     'required'    => true,
-// ));
-		$builder->add('facultad', 'entity', array(
-				'class' => 'SiviuqMainBundle:Facultad',
-				'property' => 'nombre',
-		))->add('buscar','submit');
+		$builder->add('titulo')
+		->add('grupoInvestigacionId', 'entity', array(
+				'class' => 'SiviuqMainBundle:GruposInvestigacion',
+				'property' => 'nombre',))
+		->add('lineaInvestigacion', 'entity', array(
+				'class' => 'SiviuqMainBundle:LineasInvestigacion',
+				'property' => 'nombre',))
+				
+		->add('investigadorPrincipal', 'entity', array(
+				'class' => 'SiviuqMainBundle:Investigador',
+				'property' => 'nombre',))
+		
+		->add('file', 'file', array(
+				'label' => 'Propuesta en formato .pdf',
+				'required' => true
+		))
+		
+		->add('file2', 'file', array(
+				'label' => 'Formato de cuadro presupuestal .xls',
+				'required' => true
+		));
 	}
 	
 	/**
@@ -40,14 +52,4 @@ class ProyectosType2 extends AbstractType
 	{
 		return 'siviuq_mainbundle_proyectos';
 	}
-	public function getFacultades() {
-		return $this->facultades;
-	}
-	public function setFacultades($facultades) {
-		$this->facultades = $facultades;
-		return $this;
-	}
-	
-	
-	
 }

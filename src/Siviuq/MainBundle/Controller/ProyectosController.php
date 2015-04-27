@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Siviuq\MainBundle\Entity\Proyectos;
 use Siviuq\MainBundle\Form\ProyectosType;
+use Siviuq\MainBundle\Form\ProyectosType2;
 
 /**
  * Proyectos controller.
@@ -14,6 +15,18 @@ use Siviuq\MainBundle\Form\ProyectosType;
  */
 class ProyectosController extends Controller
 {
+	public function mostrarAction()
+	{
+		$em= $this->getDoctrine()->getManager();
+	
+		$facultades=$em->getRepository('SiviuqMainBundle:Facultad')->findAll();
+		$proyectos=$em->getRepository('SiviuqMainBundle:Proyectos')->findAll();
+	
+		$form= $this->createForm(new ProyectosType());
+		return $this->render("SiviuqMainBundle:Proyectos:listarProyectos.html.twig",array(
+				"form"=>$form->createView(),"facultades"=>$facultades,"proyectos"=>$proyectos
+		));
+	}
 
     /**
      * Lists all Proyectos entities.
@@ -24,11 +37,92 @@ class ProyectosController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SiviuqMainBundle:Proyectos')->findAll();
+        $facultades=$em->getRepository('SiviuqMainBundle:Facultad')->findAll();
 
         return $this->render('SiviuqMainBundle:Proyectos:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities,'facultades'=>$facultades,
         ));
     }
+    
+    public function actualizarProyectoFacultadAction(Request $request)
+    {
+    	$data = $request->request->get('facultadId');
+    	$em= $this->getDoctrine()->getEntityManager();
+    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p JOIN p.grupoInvestigacionId gi JOIN gi.programaId pr JOIN pr.facultadId f where f.id=:idFacultad');
+    	$query->setParameter('idFacultad', $data);
+    	$proyectos=$query->getResult();
+    
+    
+    	$html='<table class="records_list">
+		<tr>
+			<th>Id</th>
+	    	<th>Numero</th>
+	    	<th>Titulo</th>
+			<th>Gasto Efectivo</th>
+		    <th>Duracion</th>
+		    <th>Fecha Inicio</th>
+		    <th>Fecha Fin</th>
+		    <th>Horas Investigador Principal</th>
+		    <th>Horas Coinvestigadores</th>
+		    <th>Estado Informe</th>
+		    <th>Acciones</th>
+		</tr>';
+    	foreach ($proyectos as $resultado){
+    		$html.='<tr>';
+    		
+    		$html.='<td>';
+    		$html.=$resultado->getId();
+    		$html.='</td>';
+    		
+    		$html.='<td>';
+    		$html.=$resultado->getNumeroProyecto();
+    		$html.='</td>';
+    		
+    		$html.='
+			<td>'.$resultado->getTitulo().'</td>';
+    			
+    		$html.='<td>';
+    		$html.=$resultado->getGastoEfectivo();
+    		$html.='</td>';
+    			
+    		$html.='<td>';
+    		$html.=$resultado->getDuracion();
+    		$html.='</td>';
+    		
+    		
+    		$html.='<td>';
+    		$html.=$resultado->getFechaInicio()->format('Y-m-d');
+    		$html.='</td>';
+    			
+    		$html.='<td>';
+    		$html.=$resultado->getFechaFin()->format('Y-m-d');
+    		$html.='</td>';
+    			
+    		$html.='<td>';
+    		$html.=$resultado->getHorasInvestigadorPrincipal();
+    		$html.='</td>';
+    		
+    		$html.='<td>';
+    		$html.=$resultado->getHorasCoinvestigadores();
+    		$html.='</td>';
+    		
+    		$html.='<td>';
+    		$html.=$resultado->getEstadoInforme();
+    		$html.='</td>';
+    		
+    		$html.='<td>';
+    		
+    		$html.='<a href="/siviuq/web/app_dev.php/proyectos/'.$resultado->getId().'/show"><img src="/siviuq/web/img/show.png" title="Mostrar"</img></a>';
+    		$html.='<a href="/siviuq/web/app_dev.php/proyectos/'.$resultado->getId().'/edit"><img src="/siviuq/web/img/edit.png" title="Editar"</img></a>';
+    		
+      		$html.='</td>';
+    	}
+    	$html.='</tr>';
+    	$html.='</table>';
+    	return new Response($html);
+    
+    }
+    
     /**
      * Creates a new Proyectos entity.
      *
@@ -71,6 +165,66 @@ class ProyectosController extends Controller
 
         return $form;
     }
+    
+    private function createProyectoForm(Proyectos $entity,$id)
+    {
+    	$form=$this->createForm(new ProyectosType2(),$entity,array(
+    			'action'=>$this->generateUrl('proyectos_aplicar',array('id' => $id)),
+    			'method'=>'POST',
+    			
+    	));
+    	
+    	$form->add('submit','submit',array ('label'=>'Aplicar'));
+    	
+				return $form;
+    }
+    
+    public function newProyectoAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	
+    	$entity = new Proyectos();
+    	$convocatoria=$em->getRepository('SiviuqMainBundle:Convocatoria')->find($id);
+    	$entity->setNumeroConvocatoria($convocatoria);
+    	$form   = $this->createProyectoForm($entity,$id);
+    	
+    	return $this->render('SiviuqMainBundle:ProyectoInvestigador:new.html.twig', array(
+    			'entity' => $entity,
+    			'convocatoria'=>$convocatoria,
+    			'form'   => $form->createView(),
+    			
+    	));
+    }
+    
+    /**
+     * Creates a new Proyectos entity.
+     *
+     */
+    public function createProyectoAction(Request $request,$id)
+    {
+    	$entity = new Proyectos();
+    	$form = $this->createProyectoForm($entity,$id);
+    	$form->handleRequest($request);
+    	
+    	if ($form->isValid()) {
+    		$entity->upload();
+    		$entity->upload2();
+    		$em = $this->getDoctrine()->getManager();
+    		$convocatoria=$em->getRepository('SiviuqMainBundle:Convocatoria')->find($id);
+    		$entity->setNumeroConvocatoria($convocatoria);
+    		$em->persist($entity);
+    		$em->flush();
+    
+    		return $this->redirect($this->generateUrl('proyectos_show', array('id' => $entity->getId())));
+    	}
+    
+    	return $this->render('SiviuqMainBundle:Proyectos:new.html.twig', array(
+    			'entity' => $entity,
+    			'form'   => $form->createView(),
+    	));
+    }
+    
+
 
     /**
      * Displays a form to create a new Proyectos entity.
@@ -233,7 +387,7 @@ class ProyectosController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('proyectos_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }

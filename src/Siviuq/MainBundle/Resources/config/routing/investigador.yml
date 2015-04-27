@@ -1,0 +1,30 @@
+investigador:
+    path:     /
+    defaults: { _controller: "SiviuqMainBundle:Investigador:index" }
+
+investigador_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiviuqMainBundle:Investigador:show" }
+
+investigador_new:
+    path:     /new
+    defaults: { _controller: "SiviuqMainBundle:Investigador:new" }
+
+investigador_create:
+    path:     /create
+    defaults: { _controller: "SiviuqMainBundle:Investigador:create" }
+    requirements: { _method: post }
+
+investigador_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiviuqMainBundle:Investigador:edit" }
+
+investigador_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiviuqMainBundle:Investigador:update" }
+    requirements: { _method: post|put }
+
+investigador_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiviuqMainBundle:Investigador:delete" }
+    requirements: { _method: post|delete }

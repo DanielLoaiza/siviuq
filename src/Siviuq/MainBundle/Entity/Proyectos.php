@@ -29,7 +29,7 @@ class Proyectos
     /**
      * @var string
      * 
-     * @ORM\Column(name="numero_proyecto",type="string")
+     * @ORM\Column(name="numero_proyecto",type="string",nullable=true)
      */
     private $numeroProyecto;
     
@@ -55,7 +55,7 @@ class Proyectos
     /**
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/vnd.ms-excel"},
+     *     mimeTypes = {"application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
      *     mimeTypesMessage = "Por favor subir un Excel valido"
      * )
      */
@@ -76,28 +76,28 @@ class Proyectos
     /**
      * @var integer
      *
-     * @ORM\Column(name="gasto_efectivo", type="integer")
+     * @ORM\Column(name="gasto_efectivo", type="integer",nullable=true)
      */
     private $gastoEfectivo;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="duracion", type="smallint")
+     * @ORM\Column(name="duracion", type="smallint",nullable=true)
      */
     private $duracion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaInicio", type="date")
+     * @ORM\Column(name="fechaInicio", type="date",nullable=true)
      */
     private $fechaInicio;
     
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaFin", type="date")
+     * @ORM\Column(name="fechaFin", type="date",nullable=true)
      */
     private $fechaFin;
     
@@ -107,12 +107,6 @@ class Proyectos
      */
     private $grupoInvestigacionId;
 
-
-    /**
-     * 
-     * @ManyToMany(targetEntity="Tutor", inversedBy="$proyectoInvestigacionId")
-     */
-    private $tutores;
 
 	/**
 	 * @ManyToMany(targetEntity="Investigador")
@@ -133,34 +127,28 @@ class Proyectos
    /**
      * @var integer
      *
-     * @ORM\Column(name="horasPrincipal", type="smallint")
+     * @ORM\Column(name="horasPrincipal", type="smallint",nullable=true)
      */
     private $horasInvestigadorPrincipal;
     
-    
     /**
-     * 
-     * @ManyToMany(targetEntity="Investigador")
-     */
-    private $investigadores;
-   /**
      * @var integer
      *
-     * @ORM\Column(name="horasCoinvestigadores", type="smallint")
+     * @ORM\Column(name="horasCoinvestigadores", type="smallint",nullable=true)
      */
     private $horasCoinvestigadores;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="estadoInforme", type="string", length=15)
+     * @ORM\Column(name="estadoInforme", type="string", length=15,nullable=true)
      */
     private $estadoInforme;
 
     
     /**
      * @var string
-     * @ORM\Column(name="estadoInforme", type="string", length=15)
+     * @ORM\Column(name="estado", type="string", length=15,nullable=true)
      */
     private $estado;
     
@@ -532,7 +520,7 @@ class Proyectos
 		// target filename to move to
 		$this->getFile2()->move(
 				$this->getUploadRootDir(),
-				$this->getFile()->getClientOriginalName()
+				$this->getFile2()->getClientOriginalName()
 		);
 			
 		if (isset($this->temp2)) {

@@ -1,8 +1,8 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Proyectos</h1>
-
+    <h3 class="titulos">Proyectos</h3>
+	<br><br>
     <table class="record_properties">
         <tbody>
             <tr>
@@ -10,7 +10,7 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Numeroproyecto</th>
+                <th>Numero Proyecto</th>
                 <td>{{ entity.numeroProyecto }}</td>
             </tr>
             <tr>
@@ -18,7 +18,7 @@
                 <td>{{ entity.titulo }}</td>
             </tr>
             <tr>
-                <th>Gastoefectivo</th>
+                <th>Gasto Efectivo</th>
                 <td>{{ entity.gastoEfectivo }}</td>
             </tr>
             <tr>
@@ -26,39 +26,35 @@
                 <td>{{ entity.duracion }}</td>
             </tr>
             <tr>
-                <th>Fechainicio</th>
+                <th>Fecha Inicio</th>
                 <td>{{ entity.fechaInicio|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Fechafin</th>
+                <th>Fecha Fin</th>
                 <td>{{ entity.fechaFin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Horasinvestigadorprincipal</th>
+                <th>Horas Investigadorprincipal</th>
                 <td>{{ entity.horasInvestigadorPrincipal }}</td>
             </tr>
             <tr>
-                <th>Horascoinvestigadores</th>
+                <th>Horas Coinvestigadores</th>
                 <td>{{ entity.horasCoinvestigadores }}</td>
             </tr>
             <tr>
-                <th>Estadoinforme</th>
+                <th>Estado Informe</th>
                 <td>{{ entity.estadoInforme }}</td>
             </tr>
         </tbody>
     </table>
+    <div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('proyectos') }}' "> Regresar</button>
+		
+	</div>
+    <div class="botoncrear">
+	
+		<button type="button" onClick=" window.location.href='{{ path('proyectos_edit', { 'id': entity.id }) }}'"> Editar Proyecto</button>
+	</div>
+    {{ form(delete_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('proyectos') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
 {% endblock %}

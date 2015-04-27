@@ -9,14 +9,27 @@ proyectos_show:
 download_file: 
     pattern:  /download/{filename}
     defaults: { _controller: SiviuqMainBundle:Proyectos:download }
+    
+siviuq_proyectos_actualizar:
+    pattern: /actualizar
+    defaults: {_controller: SiviuqMainBundle:Proyectos:actualizarProyectoFacultad}
 
 proyectos_new:
     path:     /new
     defaults: { _controller: "SiviuqMainBundle:Proyectos:new" }
+    
+proyectos_nuevo:
+    path:     /{id}/nuevo
+    defaults: { _controller: "SiviuqMainBundle:Proyectos:newProyecto" }
 
 proyectos_create:
     path:     /create
     defaults: { _controller: "SiviuqMainBundle:Proyectos:create" }
+    requirements: { _method: post }
+    
+proyectos_aplicar:
+    path:     /aplicar/{id}
+    defaults: { _controller: "SiviuqMainBundle:Proyectos:createProyecto" }
     requirements: { _method: post }
 
 proyectos_edit:

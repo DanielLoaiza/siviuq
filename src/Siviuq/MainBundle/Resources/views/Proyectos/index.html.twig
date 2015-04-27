@@ -1,22 +1,30 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Proyectos list</h1>
-
+    <h3 class="titulos">Proyectos</h3>
+	<br> <br>
+	<select id="select_facultad">
+	{% for facultad in facultades %}
+  		<option value="{{ facultad.id }}">{{ facultad.nombre }}</option>
+   	{% endfor %}
+   	<input id="buscar" type="button" class="button" value="Iniciar B&uacute;squeda">
+   	
+</select>
+<div id="tabla">
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Numeroproyecto</th>
+                <th>Numero</th>
                 <th>Titulo</th>
-                <th>Gastoefectivo</th>
+                <th>Gasto Efectivo</th>
                 <th>Duracion</th>
-                <th>Fechainicio</th>
-                <th>Fechafin</th>
-                <th>Horasinvestigadorprincipal</th>
-                <th>Horascoinvestigadores</th>
-                <th>Estadoinforme</th>
-                <th>Actions</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Horas Investigador Principal</th>
+                <th>Horas Coinvestigadores</th>
+                <th>Estado Informe</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,32 +35,46 @@
                 <td>{{ entity.titulo }}</td>
                 <td>{{ entity.gastoEfectivo }}</td>
                 <td>{{ entity.duracion }}</td>
-                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ entity.horasInvestigadorPrincipal }}</td>
                 <td>{{ entity.horasCoinvestigadores }}</td>
                 <td>{{ entity.estadoInforme }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('proyectos_show', { 'id': entity.id }) }}"><img src="{{
-    					 asset('img/edit.png') }}"title="Editar"</img></a>
-                    </li>
-                    <li>
-                        <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                	<a href="{{ path('proyectos_show', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/show.png') }}"title="Mostrar"</img></a>
+                   
+                    <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>    
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    <br>
+    <br>
+    <div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('proyectos_new') }}' "> Crear Proyecto</button>
+	</div>
 
-        <ul>
-        <li>
-            <a href="{{ path('proyectos_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
     {% endblock %}
+    
+    {% block javascripts %}
+	<script type="text/javascript">
+        $('#buscar').click(function(){
+        	var facultadId = $("#select_facultad").val();
+
+        	var route='{{ path('siviuq_proyectos_actualizar')}}';        	
+        	$.ajax({
+            	type: 'POST',
+        		url: route,
+        		data: 'facultadId='+facultadId,
+         		dataType: "html",
+        		success: function (msg){
+            		$("#tabla").html(msg);
+            	}
+            });
+		});
+</script>
+{% endblock %}

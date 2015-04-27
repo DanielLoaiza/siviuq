@@ -1,3 +1,7 @@
+siviuq_main_investigador:
+    resource: "@SiviuqMainBundle/Resources/config/routing/investigador.yml"
+    prefix:   /investigador
+
 siviuq_main_convocatoria:
     resource: "@SiviuqMainBundle/Resources/config/routing/convocatoria.yml"
     prefix:   /convocatoria
