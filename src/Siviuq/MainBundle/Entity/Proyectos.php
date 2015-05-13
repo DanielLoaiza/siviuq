@@ -148,7 +148,7 @@ class Proyectos
     
     /**
      * @var string
-     * @ORM\Column(name="estado", type="string", length=15,nullable=true)
+     * @ORM\Column(name="estado", type="string", length=15,nullable=false)
      */
     private $estado;
     

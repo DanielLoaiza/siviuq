@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Siviuq\MainBundle\Entity\Proyectos;
 use Siviuq\MainBundle\Form\ProyectosType;
 use Siviuq\MainBundle\Form\ProyectosType2;
+use Siviuq\MainBundle\Entity\Investigador;
 
 /**
  * Proyectos controller.
@@ -24,7 +25,9 @@ class ProyectosController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SiviuqMainBundle:Proyectos')->findAll();
+        $query = $em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p JOIN p.grupoInvestigacionId gi JOIN gi.programaId pr JOIN pr.facultadId f where p.estado=:estado');
+        $query->setParameter('estado','EJECUCION');
+        $entities=$query->getResult();
         $facultades=$em->getRepository('SiviuqMainBundle:Facultad')->findAll();
 
         return $this->render('SiviuqMainBundle:Proyectos:index.html.twig', array(
@@ -36,8 +39,9 @@ class ProyectosController extends Controller
     {
     	$data = $request->request->get('facultadId');
     	$em= $this->getDoctrine()->getEntityManager();
-    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p JOIN p.grupoInvestigacionId gi JOIN gi.programaId pr JOIN pr.facultadId f where f.id=:idFacultad');
+    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p JOIN p.grupoInvestigacionId gi JOIN gi.programaId pr JOIN pr.facultadId f where f.id=:idFacultad AND p.estado=:estado');
     	$query->setParameter('idFacultad', $data);
+    	$query->setParameter('estado','EJECUCION');
     	$proyectos=$query->getResult();
     
     
@@ -203,11 +207,18 @@ class ProyectosController extends Controller
     		$em->persist($entity);
     		$em->flush();
     		
+    		
+    		
+    		$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p INNER JOIN 
+    				p.investigadorPrincipal i WHERE p.id=:pid');
+    		$query->setParameter('pid',$entity->getId());
+    		$proyecto=$query->getResult();
+    		
     		$mailer = $this->get('mailer');
     		$message = $mailer->createMessage()
-    		->setSubject('You have Completed Registration!')
-    		->setFrom('viceInvestigaciones@noReply')
-    		->setTo('danielfloaiza@gmail.com')
+    		->setSubject('Tu Proyecto se ha inscrito exitosamente!')
+    		->setFrom(array('viceinvestigaciones@uniquindio.edu.co'=>'Vicerectoria Investigaciones Uniquindio'))
+    		->setTo($proyecto[0]->getInvestigadorPrincipal()->getCorreo())
     		->setBody(
     				'Te has registrado exitosamente en la convocatoria '.$convocatoria->getNombre().' proximamente daremos información'
     		);
@@ -219,6 +230,74 @@ class ProyectosController extends Controller
     	return $this->render('SiviuqMainBundle:Proyectos:new.html.twig', array(
     			'entity' => $entity,
     			'form'   => $form->createView(),
+    	));
+    }
+    
+    public function proyectoAprobadoAction($id)
+    {
+    	$entity = $this->getDoctrine()->getManager()->getRepository('SiviuqMainBundle:Proyectos')->find($id);
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p INNER JOIN
+    				p.investigadorPrincipal i WHERE p.id=:pid');
+    	$query->setParameter('pid',$id);
+    	$result=$query->getResult();
+    	
+    	$mailer = $this->get('mailer');
+    	$message = $mailer->createMessage()
+    	->setSubject('Felicidades tu proyecto ha sido aceptado')
+    	->setFrom(array('viceinvestigaciones@uniquindio.edu.co'=>'Vicerectoria Investigaciones Uniquindio'))
+    	->setTo($result[0]->getInvestigadorPrincipal()->getCorreo())
+    	->setBody(
+    			 $this->renderView(
+          
+                'SiviuqMainBundle:Mensajes:aprobado.txt.twig'
+            ),
+            'text/plain'
+    	);
+    	$mailer->send($message);
+    	
+    	 $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('SiviuqMainBundle:Proyectos:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    
+    
+    public function proyectoNoAprobadoAction($id)
+    {
+    	
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p INNER JOIN
+    				p.investigadorPrincipal i WHERE p.id=:pid');
+    	$query->setParameter('pid',$id);
+    	$result=$query->getResult();
+    	 
+    	$mailer = $this->get('mailer');
+    	$message = $mailer->createMessage()
+    	->setSubject('Información aplicacion convocatoria')
+    	->setFrom(array('viceinvestigaciones@uniquindio.edu.co'=>'Vicerectoria Investigaciones Uniquindio'))
+    	->setTo($result[0]->getInvestigadorPrincipal()->getCorreo())
+    	->setBody(
+    			$this->renderView(
+    
+    					'SiviuqMainBundle:Mensajes:desaprobado.txt.twig'
+    			),
+    			'text/plain'
+    	);
+    	$mailer->send($message);
+    	 
+    	
+    	$em = $this->getDoctrine()->getManager();
+    	
+    	
+    	$entities = $em->getRepository('SiviuqMainBundle:Convocatoria')->findAll();
+    	
+    	return $this->render('SiviuqMainBundle:Convocatoria:index.html.twig', array(
+    			'entities' => $entities,
     	));
     }
     

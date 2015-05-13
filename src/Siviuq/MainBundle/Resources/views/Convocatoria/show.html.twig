@@ -64,9 +64,9 @@
     					 asset('img/review.png') }}"title="Enviar para revisión con par"</img></a>     
                 </td> 
                 <td>
-                	 <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+                	 <a href="{{ path('proyectos_accept', { 'id': proyecto.id }) }}"><img src="{{
     					 asset('img/accept.png') }}"title="Aceptar proyecto"</img></a>
-    				<a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
+    				<a href="{{ path('proyectos_reject', { 'id': proyecto.id }) }}"><img src="{{
     					 asset('img/reject.png') }}"title="Rechazar proyecto"</img></a>  
                 </td>
             </tr>

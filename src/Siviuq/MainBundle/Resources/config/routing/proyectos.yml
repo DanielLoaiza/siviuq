@@ -45,3 +45,12 @@ proyectos_delete:
     path:     /{id}/delete
     defaults: { _controller: "SiviuqMainBundle:Proyectos:delete" }
     requirements: { _method: post|delete }
+    
+proyectos_accept:
+  path: /{id}/aceptar
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:proyectoAprobado"}
+
+proyectos_reject:
+  path: /{id}/rechazar
+  defaults: {_controller: SiviuqMainBundle:Proyectos:proyectoNoAprobado}
+ 
