@@ -1,3 +1,7 @@
+siviuq_main_evaluador:
+    resource: "@SiviuqMainBundle/Resources/config/routing/evaluador.yml"
+    prefix:   /evaluador
+
 siviuq_main_investigador:
     resource: "@SiviuqMainBundle/Resources/config/routing/investigador.yml"
     prefix:   /investigador

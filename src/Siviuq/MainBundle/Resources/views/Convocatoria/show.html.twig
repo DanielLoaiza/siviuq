@@ -60,8 +60,16 @@
     					 
                 </td>
                 <td>
-                 <a href="{{ path('convocatoria_edit', { 'id': entity.id }) }}"><img src="{{
-    					 asset('img/review.png') }}"title="Enviar para revisión con par"</img></a>     
+                {% if proyecto.evaluador %}
+                <a href="{{ path('evaluador',{'id':proyecto.id})}}"><img src="{{
+    					 asset('img/forward.png') }}"title="El proyecto ya tiene evaluador"</img></a>
+    					 
+    			{% else %}
+                 <a href="{{ path('evaluador',{'id':proyecto.id})}}"><img src="{{
+    					 asset('img/review.png') }}"title="Enviar para revisión con par"</img></a>  
+                {% endif %}
+                
+    			
                 </td> 
                 <td>
                 	 <a href="{{ path('proyectos_accept', { 'id': proyecto.id }) }}"><img src="{{

@@ -152,7 +152,12 @@ class Proyectos
      */
     private $estado;
     
-
+	 /**
+     * @ManyToOne(targetEntity="Evaluador")
+     * 
+     */
+    private $evaluador;
+    
     public function __construct()
     {
     
@@ -658,6 +663,30 @@ class Proyectos
 		$this->estado = $estado;
 		return $this;
 	}
+	
+	/**
+	 *
+	 * @return the unknown_type
+	 */
+	public function getEvaluador() {
+		return $this->evaluador;
+	}
+	
+	/**
+	 *
+	 * @param unknown_type $evaluador        	
+	 */
+	public function setEvaluador($evaluador) {
+		$this->evaluador = $evaluador;
+		return $this;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

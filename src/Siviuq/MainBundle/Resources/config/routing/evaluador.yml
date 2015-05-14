@@ -1,0 +1,34 @@
+evaluador:
+    path:     /{id}
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:index" }
+
+evaluador_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:show" }
+
+evaluador_new:
+    path:     /new
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:new" }
+
+evaluador_create:
+    path:     /create
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:create" }
+    requirements: { _method: post }
+
+evaluador_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:edit" }
+
+evaluador_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:update" }
+    requirements: { _method: post|put }
+
+evaluador_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiviuqMainBundle:Evaluador:delete" }
+    requirements: { _method: post|delete }
+    
+evaluador_assign:
+    path: /{evaluadorId}/{proyectoId}
+    defaults: {_controller: "SiviuqMainBundle:Evaluador:asignarEvaluador"}
