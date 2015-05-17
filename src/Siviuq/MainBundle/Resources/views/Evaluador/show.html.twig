@@ -26,15 +26,10 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('evaluador') }}">
-            Back to the list
-        </a>
+    <button type="button" onClick=" window.location.href='{{ path('evaluador') }}' "> Regresar a 
+	evaluadores</button>
     </li>
-    <li>
-        <a href="{{ path('evaluador_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
+    
     <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

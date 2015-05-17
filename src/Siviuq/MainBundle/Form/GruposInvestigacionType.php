@@ -17,7 +17,9 @@ class GruposInvestigacionType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
-            ->add('fechaConformacion')
+            ->add('fechaConformacion','date',array(
+    'widget' => 'single_text',
+    'format' => 'yyyy-MM-dd'))
             ->add('programaId')
             ->add('clasificacionColciencias')
             ->add('lineaInvestigacion')

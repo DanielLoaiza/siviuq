@@ -19,8 +19,12 @@ class ProyectosType extends AbstractType
             ->add('titulo')
             ->add('gastoEfectivo')
             ->add('duracion')
-            ->add('fechaInicio')
-            ->add('fechaFin')
+            ->add('fechaInicio','date',array(
+    'widget' => 'single_text',
+    'format' => 'yyyy-MM-dd'))
+            ->add('fechaFin','date',array(
+    'widget' => 'single_text',
+    'format' => 'yyyy-MM-dd'))
             ->add('horasInvestigadorPrincipal')
             ->add('horasCoinvestigadores')
             ->add('estadoInforme')

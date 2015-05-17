@@ -9,8 +9,7 @@
                 <th>Nombre</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha Fin</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th>Inscribirse</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +18,6 @@
                 <td>{{ entity.nombre }}</td>
                 <td>{% if entity.fechaInicia %}{{ entity.fechaInicia|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ entity.estado }}</td>
                 <td><a href="{{ path('proyectos_nuevo', { 'id': entity.id }) }}"><img src="{{
      					asset('img/Apply.png') }}" title="Aplicar a la convocatoria"</img></a>
                                 

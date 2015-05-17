@@ -36,8 +36,11 @@ class ConvocatoriaController extends Controller
     public function convocatoriasInvestigadorAction()
     {
     	$em = $this->getDoctrine()->getManager();
+    	
+    	$query=$em->createQuery('SELECT c FROM SiviuqMainBundle:Convocatoria c WHERE c.estado=:estado');
+    	$query->setParameter('estado',1);
+    	$entities=$query->getResult();
     
-    	$entities = $em->getRepository('SiviuqMainBundle:Convocatoria')->findAll();
     
     	return $this->render('SiviuqMainBundle:ConvocatoriaInvestigador:index.html.twig', array(
     			'entities' => $entities,
@@ -174,7 +177,7 @@ class ConvocatoriaController extends Controller
             'method' => 'PUT',
         ));
         $form->add('estado');
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
     }

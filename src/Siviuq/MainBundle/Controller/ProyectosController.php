@@ -293,6 +293,8 @@ class ProyectosController extends Controller
     		
     		$html.='<a href="/siviuq/web/app_dev.php/proyectos/'.$resultado->getId().'/show"><img src="/siviuq/web/img/show.png" title="Mostrar"</img></a>';
     		$html.='<a href="/siviuq/web/app_dev.php/proyectos/'.$resultado->getId().'/edit"><img src="/siviuq/web/img/edit.png" title="Editar"</img></a>';
+    		$html.='<a href="/siviuq/web/app_dev.php/proyectos/'.$resultado->getId().'/certificado"><img src="/siviuq/web/img/certificate.png" title="Certificado"</img></a>';
+    		
     		
       		$html.='</td>';
     	}

@@ -41,15 +41,11 @@
     </table>
 
         <ul class="record_actions">
+        
+        
     <li>
-        <a href="{{ path('investigador') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('investigador_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
+    <button type="button" onClick=" window.location.href='{{ path('investigador') }}' "> Regresar a 
+			investigadores</button>
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>

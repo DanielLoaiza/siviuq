@@ -21,11 +21,12 @@
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('evaluador_new') }}">
-                Create a new entry</a>
-        </li>
-    </ul>
+ 	<br>
+    <br>
+    <div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('evaluador_new') }}' "> Crear Evaluador</button>
+	</div>
+       
+           
+       
     {% endblock %}

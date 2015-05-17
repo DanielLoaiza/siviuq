@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Investigador list</h1>
+    <h1>Investigadores</h1>
 
     <table class="records_list">
         <thead>
@@ -29,25 +29,22 @@
                 <td>{{ entity.cedula }}</td>
                 <td>{{ entity.observaciones }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('investigador_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('investigador_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                
+                <a href="{{ path('investigador_show', { 'id': entity.id }) }}"><img src="{{
+     					asset('img/show.png') }}" title="Mostrar"</img></a>
+                    
+                    <a href="{{ path('investigador_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+     <br>
+    <br>
 
-        <ul>
-        <li>
-            <a href="{{ path('investigador_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('investigador_new') }}' "> Crear Investigador</button>
+	</div>
+     
     {% endblock %}

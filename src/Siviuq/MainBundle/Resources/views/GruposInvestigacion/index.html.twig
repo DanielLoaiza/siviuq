@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>GruposInvestigacion list</h1>
+    <h1>Grupos de investigación</h1>
 
     <table class="records_list">
         <thead>
@@ -21,25 +21,21 @@
                 <td>{{ entity.nombre }}</td>
                 <td>{% if entity.fechaConformacion %}{{ entity.fechaConformacion|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('gruposinvestigacion_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('gruposinvestigacion_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                
+                <a href="{{ path('gruposinvestigacion_show', { 'id': entity.id }) }}"><img src="{{
+     					asset('img/show.png') }}" title="Mostrar"</img></a>
+                    
+                    <a href="{{ path('gruposinvestigacion_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('gruposinvestigacion_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+     <br>
+    <br>
+ 	<div class="botoncrear">
+		<button type="button" onClick=" window.location.href='{{ path('gruposinvestigacion_new') }}' "> Crear Grupo</button>
+	</div>
+       
     {% endblock %}
