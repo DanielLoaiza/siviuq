@@ -1,0 +1,30 @@
+avance:
+    path:     /
+    defaults: { _controller: "SiviuqMainBundle:Avance:index" }
+
+avance_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiviuqMainBundle:Avance:show" }
+
+avance_new:
+    path:     /new
+    defaults: { _controller: "SiviuqMainBundle:Avance:new" }
+
+avance_create:
+    path:     /create
+    defaults: { _controller: "SiviuqMainBundle:Avance:create" }
+    requirements: { _method: post }
+
+avance_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiviuqMainBundle:Avance:edit" }
+
+avance_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiviuqMainBundle:Avance:update" }
+    requirements: { _method: post|put }
+
+avance_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiviuqMainBundle:Avance:delete" }
+    requirements: { _method: post|delete }

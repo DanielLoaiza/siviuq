@@ -9,7 +9,6 @@
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Area</th>
-                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -18,11 +17,6 @@
                 <td>{{ entity.nombre }}</td>
                 <td>{{ entity.correo }}</td>
                 <td>{{ entity.area }}</td>
-                <td>
-                    <a href="{{ path('evaluador_assign', {'evaluadorId': entity.id,'proyectoId':app.request.get('id') }) }}">
-                    <img src="{{
-     					asset('img/assigncheck.png') }}" title="Asignar este evaluador"</img></a>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -31,8 +25,7 @@
         <ul>
         <li>
             <a href="{{ path('evaluador_new') }}">
-                Create a new entry
-            </a>
+                Create a new entry</a>
         </li>
     </ul>
     {% endblock %}

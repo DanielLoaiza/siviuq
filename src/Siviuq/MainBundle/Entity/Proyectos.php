@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * Proyectos
@@ -157,6 +158,11 @@ class Proyectos
      * 
      */
     private $evaluador;
+    
+    /**
+     * @OneToOne(targetEntity="Avance")
+     */
+    private $avanceFinal;
     
     public function __construct()
     {
@@ -684,11 +690,17 @@ class Proyectos
 	
 	
 	
+ public function __toString()
+    {
+    	return $this->titulo;
+    }
+	public function getAvanceFinal() {
+		return $this->avanceFinal;
+	}
+	public function setAvanceFinal($avanceFinal) {
+		$this->avanceFinal = $avanceFinal;
+		return $this;
+	}
 	
-	
-	
-	
-	
-	
-    
+  
 }

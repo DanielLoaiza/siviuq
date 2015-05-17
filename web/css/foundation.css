@@ -9,13 +9,105 @@ p.texto{
 .botonregresar{
 	position: absolute;
 
-	}
+}
+nav {
+    background-color: rgb(60,136,34);
+    margin-bottom:2%;
+    overflow: hidden;
+}
+
+
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    /* This allow us to arrange list items in a row, without using float */
+    display: inline-block;
+    list-style-type: none;
+}
+
+ 
+/* Create a style for the first level items */
+nav > ul > li > a {
+    color: #ffffff;
+    background-color:#0080006013634;
+    display: block;
+    line-height: 2em;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+}
+
+
+
+
+label.filebutton {
+    width:32px;
+    height:32px;
+    overflow:hidden;
+    position:relative;
+    margin-left:30%;
+    background-image:url("../Img/uploadFile.png");
+}
+
+label.finalFilebutton {
+	width:32px;
+    height:32px;
+    overflow:hidden;
+    position:relative;
+    margin-left:30%;
+    background-image:url("../Img/finalTask.png");
+}
+label.submitbutton {
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    position:relative;
+    margin-top:3%;
+    margin-left:42%;
+    background-image:url("../Img/checked.png");
+}
+
+label.submitEval
+{
+	width:24px;
+    height:24px;
+    overflow:hidden;
+    position:relative;
+    margin-top:3%;
+    margin-left:28%;
+    background-image:url("../Img/review.png");
+}
+
+label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding:0;
+}
+
 .botoncrear, .botonregresar{
 	text-align:center;
 }
-.titulos, .records_list
+.titulos
 {
-	margin:0 auto;
+	margin-top:10%;
+	text-align: center;
+}
+
+.records_list
+{
+	margin: 0 auto;
 	text-align: center;
 }
 
@@ -37,6 +129,8 @@ div#contenido
 	right:200px;
 	left:200px;
 	margin-top:30px;
+	margin-left:10%;
+	margin-right:2%;
 	height:100%;
 }
 header{
@@ -3718,7 +3812,7 @@ a {
   text-decoration: none;
   line-height: inherit; }
   a:hover, a:focus {
-    color: #0078a0; }
+    color: #58b888; }
   a img {
     border: none; }
 

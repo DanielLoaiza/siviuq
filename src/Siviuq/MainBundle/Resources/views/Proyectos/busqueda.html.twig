@@ -1,0 +1,155 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h3 class="titulos">Buscar Proyectos</h3>
+	
+<div id="tabla">
+<form action="{{ path('proyectos_filter') }}" method="post">
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Criterio</th>
+                <th>Valor</th>
+                <th>Seleccionar</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+               <td style="text-align: center"><label>T&iacutetulo</label></td>
+               <td style="text-align: center">
+               <input type="text" name="titulo">
+               </td>
+                <td style="text-align: center">
+                <input name="check_titulo" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Investigador Principal</label></td>
+               <td style="text-align: center">
+               <input type="text" name="investigadorPrincipal">
+               </td>
+                <td style="text-align: center">
+                <input name="check_investigadorPrincipal" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                 <td style="text-align: center"><label>Coinvestigador</label></td>
+               <td style="text-align: center">
+               <input type="text" name="coInvestigador">
+               </td>
+                <td style="text-align: center">
+                <input name="check_coInvestigador" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Grupo Investigaci&oacuten</label></td>
+               <td style="text-align: center">
+                <select name="select_grupo">
+               		 	<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+						{% for grupo in gruposInvestigacion %}
+  							<option value="{{ grupo.id }}">{{ grupo.nombre }}</option>
+   						{% endfor %}
+   			  </select>
+               </td>
+                <td style="text-align: center">
+                <input name="check_grupoInvestigacion" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Fecha Inicio</label></td>
+               <td style="text-align: center">
+                <input type="date" name="fechaInicio">
+               </td>
+                <td style="text-align: center">
+                <input name="check_FechaInicio" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Fecha Fin</label></td>
+               <td style="text-align: center">
+               <input type="date" name="fechaFin">
+               </td>
+                <td style="text-align: center">
+                <input name="check_fechaFin" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+               <td style="text-align: center"><label>Estado Proyecto</label></td>
+               <td style="text-align: center">
+               <select name="select_estadoProyecto">
+               		 	<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+						<option value="Ejecucion">Ejecución</option>
+						<option value="Aplazado">Aplazado</option>
+						<option value="Terminado">Terminado</option>
+   			  </select>
+               </td>
+                <td style="text-align: center">
+                <input name="check_estadoProyecto" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Estado Informe</label></td>
+               <td style="text-align: center">
+               <select name="select_estadoInforme">
+               		 	<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+						<option value="Entregado">Entregado</option>
+						<option value="Pendiente">Pendiente</option>
+   			</select>
+               </td>
+                <td style="text-align: center">
+                <input name="check_estadoInforme" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Linea de investigaci&oacuten</label></td>
+               <td style="text-align: center">
+               <select name="select_linea">
+               		 	<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+						{% for linea in lineas %}
+  							<option value="{{ linea.id }}">{{ linea.nombre }}</option>
+   						{% endfor %}
+   					</select>
+               </td>
+                <td style="text-align: center">
+                <input name="check_lineaInvestigacion" type="checkbox">
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: center"><label>Convocatoria</label></td>
+               <td style="text-align: center">
+               		<select name="select_convocatoria">
+               		 	<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+						{% for convocatoria in convocatorias %}
+  							<option value="{{ convocatoria.id }}">{{ convocatoria.nombre }}</option>
+   						{% endfor %}
+   					</select>
+               </td>
+                <td style="text-align: center">
+                <input name="check_convocatoria" type="checkbox">
+                </td>
+            </tr>
+       
+        </tbody>
+    </table>
+    <br>
+     	<div align="center">
+            <input type="submit" id="send" class="button"  value="Iniciar B&uacute;squeda">
+    	</div>
+  	</form>
+               
+    </div>
+    <br>
+    <br>
+
+    {% endblock %}
+    

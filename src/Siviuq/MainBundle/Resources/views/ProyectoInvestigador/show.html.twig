@@ -1,0 +1,69 @@
+{% extends '::base2.html.twig' %}
+
+{% block body -%}
+    <h3 class="titulos">Proyectos</h3>
+	<br><br>
+   <div id="tabla">
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Titulo</th>
+                <th>Gasto Efectivo</th>
+                <th>Duracion</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Horas Investigador Principal</th>
+                <th>Horas Coinvestigadores</th>
+                <th>Estado Informe</th>
+                <th>Avance</th>
+                <th>Informe Final</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.numeroProyecto }}</td>
+                <td>{{ entity.titulo }}</td>
+                <td>{{ entity.gastoEfectivo }}</td>
+                <td>{{ entity.duracion }}</td>
+                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.horasInvestigadorPrincipal }}</td>
+                <td>{{ entity.horasCoinvestigadores }}</td>
+                <td>{{ entity.estadoInforme }}</td>
+                <td>
+                
+                <form action="{{ path('proyectos_upload',{'id':entity.id})}}" method="post"
+                enctype="multipart/form-data">
+                	<label class="filebutton">
+						<span><input type="file" id="myfile" name="myfile"></span>
+					</label>
+					<label class="submitbutton">
+						 <span><input type="submit"/></span>
+					</label>
+               
+                </form>
+                	
+                </td>
+                
+                 <td>
+                
+                <form action="{{ path('proyectos_upload',{'id':entity.id})}}" method="post"
+                enctype="multipart/form-data">
+                	<label class="finalFilebutton">
+						<span><input type="file" id="finalFile" name="finalFile"></span>
+					</label>
+					<label class="submitbutton">
+						 <span><input type="submit"/></span>
+					</label>
+               
+                </form>
+                	
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

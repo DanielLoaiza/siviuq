@@ -55,6 +55,17 @@ class EvaluadorController extends Controller
         ));
     }
     
+    public function evaluadoresProyectoAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	
+    	$entities = $em->getRepository('SiviuqMainBundle:Evaluador')->findAll();
+    	
+    	return $this->render('SiviuqMainBundle:Evaluador:evaluadoresProyecto.html.twig', array(
+    			'entities' => $entities,
+    	));
+    }
+    
     public function asignarEvaluadorAction($evaluadorId,$proyectoId)
     {
     	$em = $this->getDoctrine()->getManager();
@@ -97,7 +108,7 @@ class EvaluadorController extends Controller
     	
     	;
     	
-    	//$mailer->send($message);
+    	$mailer->send($message);
     	
     	return $this->redirect($this->generateUrl('proyectos_show', array('id' => $proyecto->getId())));
     }
@@ -133,6 +144,7 @@ class EvaluadorController extends Controller
         return $this->render('SiviuqMainBundle:Evaluador:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+        	
         ));
     }
 

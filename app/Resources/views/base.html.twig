@@ -6,6 +6,7 @@
         {% block stylesheets %}<link href="{{ asset('css/foundation.css') }}" rel="stylesheet" type="text/css"/>
         {% endblock %}
         <script src="{{ asset('js/jquery-2.1.3.min.js') }}"></script>
+        <script src="{{ asset('js/foundation.min.js') }}"></script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -15,34 +16,31 @@
 <div id="menu">
 
 	<div id="logo-principal"></div>
+
 	<div id="contenedor-general-primero" class="contenedor-general">
 		<div class="logo-interior"></div>
-		<p class="texto">Inicio</p>
+		<a href="{{ path('proyectos')}}"><p class="texto">Proyectos</p></a>	
+	</div>
+	
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<a href="{{ path('gruposinvestigacion')}}"><p class="texto">Grupos</p></a>
 	</div>
 	
 	<div class="contenedor-general">
 		<div class="logo-interior"></div>
-		<p class="texto">Proyectos</p>
-	</div>
-	
-	<div class="contenedor-general">
-		<div class="logo-interior"></div>
-		<p class="texto">Semilleros</p>
-	</div>
-	
-	<div class="contenedor-general">
-		<div class="logo-interior"></div>
-		<p class="texto">Grupos</p>
-	</div>
-	
-	<div class="contenedor-general">
-		<div class="logo-interior"></div>
-		<p class="texto">Investigadores</p>
+		<a href="{{ path('investigador')}}"><p class="texto">Investigadores</p></a>
 	</div>
 	
 	<div class="contenedor-general">
 		<div class="logo-interior"></div>
 		<a href="{{ path('convocatoria')}}"><p class="texto">Convocatorias</p></a>
+	</div>
+	
+	<div class="contenedor-general">
+		<div class="logo-interior"></div>
+		<a href="{{ path('evaluador')}}"><p class="texto">Evaluadores</p></a>
 	</div>
 </div>
 <div id="contenido">

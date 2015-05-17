@@ -1,0 +1,30 @@
+gruposinvestigacion:
+    path:     /
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:index" }
+
+gruposinvestigacion_show:
+    path:     /{id}/show
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:show" }
+
+gruposinvestigacion_new:
+    path:     /new
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:new" }
+
+gruposinvestigacion_create:
+    path:     /create
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:create" }
+    methods:  POST
+
+gruposinvestigacion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:edit" }
+
+gruposinvestigacion_update:
+    path:     /{id}/update
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:update" }
+    methods:  [POST, PUT]
+
+gruposinvestigacion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SiviuqMainBundle:GruposInvestigacion:delete" }
+    methods:  [POST, DELETE]

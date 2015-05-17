@@ -52,5 +52,24 @@ proyectos_accept:
 
 proyectos_reject:
   path: /{id}/rechazar
-  defaults: {_controller: SiviuqMainBundle:Proyectos:proyectoNoAprobado}
- 
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:proyectoNoAprobado"}
+  
+proyectos_generate:
+  path: /{id}/certificado
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:generarCertificado"}
+  
+proyectos_investigador:
+  path: /Investigador
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:verProyectosInvestigador"}
+
+proyectos_upload:
+  path: /Investigador/Upload/{id}
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:subirAvance"}
+  
+proyectos_search:
+  path: /busquedaAvanzada
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:busquedaAvanzadaProyectos"}
+
+proyectos_filter: 
+  path: /filtrar
+  defaults: {_controller: "SiviuqMainBundle:Proyectos:buscarFiltros"}

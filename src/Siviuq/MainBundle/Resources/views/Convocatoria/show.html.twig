@@ -65,8 +65,17 @@
     					 asset('img/forward.png') }}"title="El proyecto ya tiene evaluador"</img></a>
     					 
     			{% else %}
-                 <a href="{{ path('evaluador',{'id':proyecto.id})}}"><img src="{{
-    					 asset('img/review.png') }}"title="Enviar para revisión con par"</img></a>  
+    			
+    			<form action="{{ path('evaluadores_proyecto')}}" method="post"
+                enctype="multipart/form-data">
+                	<label class="review">
+                		<input type="hidden" name="id" value="{{ proyecto.id }}">
+					</label>
+					<label class="submitEval">
+						 <span><input type="submit"/></span>
+					</label>
+               
+                </form>
                 {% endif %}
                 
     			

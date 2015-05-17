@@ -1,0 +1,40 @@
+<html>
+<header>
+<h2>LA VICERRECTORIA DE INVESTIGACIONES DE LA UNIVERSIDAD DEL QUINDIO</h2>
+</header>
+
+<body>
+<h2>
+CERTIFICA
+</h2>
+<p>
+Que el docente {{ investigador.nombre }}, identificado con c&eacutedula No. {{ investigador.cedula }},<br>
+ha participado en el siguiente proyecto de investigaci&oacuten:
+</p>
+
+<p>
+Investigador principal del proyecto <b>No. {{ proyecto.numeroProyecto }}</b> "{{ proyecto.titulo }}"<br>
+tuvo una duraci&oacuten de {{ meses }}, inici&oacute en {{ proyecto.fechaInicio|date('d-m-Y')  }} y finaliz&oacute en {{ proyecto.fechaFin|date('d-m-Y')  }}
+y obtuvo una reasignaci&oacuten de labor acad&eacutemica de {{ proyecto.horasInvestigadorPrincipal }} horas/semana.
+</p>
+
+<p>
+El presente certificado se expide a petici&oacuten del interesado.
+<br>
+Armenia,{{ "now"|date("d/m/Y") }}
+</p>
+<br>
+<br>
+<br>
+<p>
+PATRICIA LANDAZURI MSc PHD.
+</p>
+
+<br>
+<p>
+A la copia de la presente constancia se adhieren y anulan estampillas: Pro desarrollo $2.100 Pro <br>
+hospital $2.100, Pro universidad $2.100
+</p>
+
+</body>
+</html>

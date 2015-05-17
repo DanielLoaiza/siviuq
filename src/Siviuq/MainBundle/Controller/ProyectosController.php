@@ -9,6 +9,10 @@ use Siviuq\MainBundle\Entity\Proyectos;
 use Siviuq\MainBundle\Form\ProyectosType;
 use Siviuq\MainBundle\Form\ProyectosType2;
 use Siviuq\MainBundle\Entity\Investigador;
+use Siviuq\MainBundle\Entity\Avance;
+use Siviuq\MainBundle\Entity\GruposInvestigacion;
+use Siviuq\MainBundle\Entity\LineasInvestigacion;
+use Siviuq\MainBundle\Entity\Convocatoria;
 
 /**
  * Proyectos controller.
@@ -33,6 +37,189 @@ class ProyectosController extends Controller
         return $this->render('SiviuqMainBundle:Proyectos:index.html.twig', array(
             'entities' => $entities,'facultades'=>$facultades,
         ));
+    }
+    
+    public function verProyectosInvestigadorAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	
+    	$query = $em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p JOIN p.grupoInvestigacionId gi JOIN gi.programaId pr JOIN pr.facultadId f where p.estado=:estado');
+    	$query->setParameter('estado','EJECUCION');
+    	$entities=$query->getResult();
+    	$facultades=$em->getRepository('SiviuqMainBundle:Facultad')->findAll();
+    	
+    	return $this->render('SiviuqMainBundle:ProyectoInvestigador:show.html.twig', array(
+    			'entities' => $entities,'facultades'=>$facultades,
+    	));
+    }
+    
+    public function busquedaAvanzadaProyectosAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	 
+    	$gruposInvestigacion=$em->getRepository('SiviuqMainBundle:GruposInvestigacion')->findAll();
+    	$lineas=$em->getRepository('SiviuqMainBundle:LineasInvestigacion')->findAll();
+    	$convocatorias=$em->getRepository('SiviuqMainBundle:Convocatoria')->findAll();
+    	
+    	
+    	
+    	 
+    	return $this->render('SiviuqMainBundle:Proyectos:busqueda.html.twig', array(
+    			'gruposInvestigacion' => $gruposInvestigacion,'lineas'=>$lineas,
+    			'convocatorias'=>$convocatorias
+    	));
+    }
+    
+    public function buscarFiltrosAction(Request $request)
+    {
+    		$em = $this->getDoctrine()->getManager();
+    			
+    		$query=$em->createQueryBuilder();
+    		$query->addSelect('p');
+    		$query->from('SiviuqMainBundle:Proyectos','p');
+    			
+    			
+    		if (null != $request->request->get('check_titulo')) {
+    			
+    			if (null != $request->request->get('titulo')) {
+    				
+    				$query->andwhere( $query->expr()->like('LOWER(p.titulo)',':titulo'));
+    				$query->setParameter('titulo','%'.strtolower($request->request->get('titulo')).'%' );
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_investigadorPrincipal')) {
+    			 
+    			if (null != $request->request->get('investigadorPrincipal')) {
+    				
+    				$query->innerJoin('p.investigadorPrincipal', 'ip');
+    				$query->andwhere( $query->expr()->like('LOWER(ip.nombre)'
+    						,':nombreIp'));
+    				$query->setParameter('nombreIp','%'.strtolower($request->request
+    						->get('investigadorPrincipal')).'%' );
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_coInvestigador')) {
+    			 
+    			if (null != $request->request->get('coInvestigador')) {
+    		
+    				$query->innerJoin('p.investigadores', 'inv');
+    				$query->andwhere( $query->expr()->like('LOWER(inv.nombre)'
+    						,':nombreInv'));
+    				$query->setParameter('nombreInv','%'.strtolower($request->request
+    						->get('coInvestigador')).'%' );
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_grupoInvestigacion')) {
+    			 
+    			if (null != $request->request->get('select_grupo')) {
+    		
+    				$query->innerJoin('p.grupoInvestigacionId', 'gi');
+    				$query->andwhere('gi.id = :gid');
+    				$query->setParameter('gid', $request->request->get('select_grupo'));
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_FechaInicio')) {
+    			 
+    			if (null != $request->request->get('fechaInicio')) {
+    		
+    				$query->andwhere('p.fechaInicio = :fechaInicio');
+    				$query->setParameter('fechaInicio', $request->request->get('fechaInicio'));
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_fechaFin')) {
+    			 
+    			if (null != $request->request->get('fechaFin')) {
+    		
+    				$query->andwhere('p.fechaFin = :fechaFin');
+    				$query->setParameter('fechaFin', $request->request->get('fechaFin'));
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_estadoProyecto')) {
+    			 
+    			if (null != $request->request->get('select_estadoProyecto')) {
+    		
+    				$query->andwhere( 'LOWER(p.estado)=:estadopr');
+    				$query->setParameter('estadopr',strtolower($request->request
+    						->get('select_estadoProyecto')) );
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_estadoInforme')) {
+    			 
+    			if (null != $request->request->get('select_estadoInforme')) {
+    		
+    				$query->andwhere( 'LOWER(p.estadoInforme)=:estadoInforme');
+    				$query->setParameter('estadoInforme',strtolower($request->request
+    						->get('select_estadoInforme')) );
+    				}
+    		}
+    		
+    		if (null != $request->request->get('check_lineaInvestigacion')) {
+    			 
+    			if (null != $request->request->get('select_linea')) {
+    		
+    				$query->innerJoin('p.lineaInvestigacion', 'li');
+    				$query->andwhere('li.id = :lid');
+    				$query->setParameter('lid', $request->request->get('select_linea'));
+    			}
+    		}
+    		
+    		if (null != $request->request->get('check_convocatoria')) {
+    			 
+    			if (null != $request->request->get('select_convocatoria')) {
+    		
+    				$query->innerJoin('p.numeroConvocatoria', 'nc');
+    				$query->where('nc.id = :nid');
+    				$query->setParameter('nid', $request->request->get('select_convocatoria'));
+    			}
+    		}
+    		
+    		$query = $query->getQuery();
+    		$entities= $query->getResult();
+    		
+    		
+    		return $this->render('SiviuqMainBundle:Proyectos:filtrosBusqueda.html.twig', array(
+    				'entities'=>$entities
+    		));
+    		
+    }
+    
+    public function subirAvanceAction(Request $request,$id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('SiviuqMainBundle:Proyectos')->find($id);
+    	
+    	$data = $request->files->get('myfile');
+    	$data2= $request->files->get('finalFile');
+    	
+    	$avance= new Avance();
+    	$avance->setProyecto($entity);
+    	
+    	if ($data){
+    	
+	    	$avance->setFile($data);
+	    	$avance->upload();
+	    	$entity->setEstadoInforme('Entregado');
+	    	$em->persist($avance);
+	    	$em->flush();
+    	}
+    	else {
+	    	$avance->setFile($data2);
+	    	$avance->upload();
+	    	$entity->setEstadoInforme('Entregado');
+	    	$entity->setEstado('Terminado');
+	    	$entity->setAvanceFinal($avance);
+	    	$em->persist($avance);
+	    	$em->flush();
+    	}
+    	
+    	return $this->redirect($this->generateUrl('proyectos_investigador'));
     }
     
     public function actualizarProyectoFacultadAction(Request $request)
@@ -204,6 +391,7 @@ class ProyectosController extends Controller
     		$em = $this->getDoctrine()->getManager();
     		$convocatoria=$em->getRepository('SiviuqMainBundle:Convocatoria')->find($id);
     		$entity->setNumeroConvocatoria($convocatoria);
+    		$entity->setEstado('Revision');
     		$em->persist($entity);
     		$em->flush();
     		
@@ -450,6 +638,32 @@ class ProyectosController extends Controller
         }
 
         return $this->redirect($this->generateUrl('proyectos'));
+    }
+    
+    
+    public function generarCertificadoAction($id)
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$query=$em->createQuery('SELECT p FROM SiviuqMainBundle:Proyectos p INNER JOIN
+    				p.investigadorPrincipal i WHERE p.id=:pid');
+    	$query->setParameter('pid',$id);
+    	$result=$query->getResult();
+    	
+    	$meses = date_diff($result[0]->getFechaInicio(), $result[0]->getFechaFin());
+    	
+    	
+    	$html = $this->renderView('SiviuqMainBundle:Certificado:certificado.html.twig', array(
+    			'proyecto' => $result[0],'investigador'=>$result[0]->getInvestigadorPrincipal(),'meses'=>$meses->format('%m meses')
+    	));
+    	
+    	return new Response(
+    			$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+    			200,
+    			array(
+    					'Content-Type'        => 'application/pdf',
+    					'Content-Disposition' => 'attachment; filename="certificado"'.$result[0]->getTitulo().'.pdf'
+    			)
+    	);
     }
 
     /**

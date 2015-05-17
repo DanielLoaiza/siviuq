@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div id="tabla">
+    <table class="records_list" name='table'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Titulo</th>
+                <th>Gasto Efectivo</th>
+                <th>Duracion</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Horas Investigador Principal</th>
+                <th>Horas Coinvestigadores</th>
+                <th>Estado Informe</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.numeroProyecto }}</td>
+                <td>{{ entity.titulo }}</td>
+                <td>{{ entity.gastoEfectivo }}</td>
+                <td>{{ entity.duracion }}</td>
+                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.horasInvestigadorPrincipal }}</td>
+                <td>{{ entity.horasCoinvestigadores }}</td>
+                <td>{{ entity.estadoInforme }}</td>
+                 <td>
+                	<a href="{{ path('proyectos_show', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/show.png') }}"title="Mostrar"</img></a>
+                   
+                    <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}"><img src="{{
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
+    					 
+    				<a href="{{ path('proyectos_generate', { 'id': entity.id }) }}"><img src="{{
+     					asset('img/certificate.png') }}" title="Mostrar"</img></a> 
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+               
+    </div>
+   
+
+    {% endblock %}
+    

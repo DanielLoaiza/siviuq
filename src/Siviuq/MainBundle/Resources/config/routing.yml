@@ -1,3 +1,11 @@
+siviuq_main_gruposinvestigacion:
+    resource: "@SiviuqMainBundle/Resources/config/routing/gruposinvestigacion.yml"
+    prefix:   /gruposinvestigacion
+
+siviuq_main_avance:
+    resource: "@SiviuqMainBundle/Resources/config/routing/avance.yml"
+    prefix:   /avance
+
 siviuq_main_evaluador:
     resource: "@SiviuqMainBundle/Resources/config/routing/evaluador.yml"
     prefix:   /evaluador

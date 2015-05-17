@@ -1,8 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h3 class="titulos">Proyectos</h3>
+
+<nav>
+
+       <ul>
+            <li><a href="{{ path('proyectos_new') }}">Crear</a></li>
+            <li><a href="{{ path('proyectos_search') }}">Busqueda Avanzada</a></li>
+        </ul>
+    </nav>
+
+<h3 class="titulos">Proyectos</h3>
 	<br> <br>
+    
+    
 	<select id="select_facultad">
 	{% for facultad in facultades %}
   		<option value="{{ facultad.id }}">{{ facultad.nombre }}</option>
@@ -35,8 +46,8 @@
                 <td>{{ entity.titulo }}</td>
                 <td>{{ entity.gastoEfectivo }}</td>
                 <td>{{ entity.duracion }}</td>
-                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.fechaInicio %}{{ entity.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.fechaFin %}{{ entity.fechaFin|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ entity.horasInvestigadorPrincipal }}</td>
                 <td>{{ entity.horasCoinvestigadores }}</td>
                 <td>{{ entity.estadoInforme }}</td>
@@ -45,7 +56,10 @@
     					 asset('img/show.png') }}"title="Mostrar"</img></a>
                    
                     <a href="{{ path('proyectos_edit', { 'id': entity.id }) }}"><img src="{{
-    					 asset('img/edit.png') }}"title="Editar"</img></a>    
+    					 asset('img/edit.png') }}"title="Editar"</img></a>
+    					 
+    				<a href="{{ path('proyectos_generate', { 'id': entity.id }) }}"><img src="{{
+     					asset('img/certificate.png') }}" title="Mostrar"</img></a> 
                 </td>
             </tr>
         {% endfor %}
@@ -54,9 +68,6 @@
     </div>
     <br>
     <br>
-    <div class="botoncrear">
-		<button type="button" onClick=" window.location.href='{{ path('proyectos_new') }}' "> Crear Proyecto</button>
-	</div>
 
     {% endblock %}
     

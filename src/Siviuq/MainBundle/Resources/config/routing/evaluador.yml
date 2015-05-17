@@ -1,5 +1,5 @@
 evaluador:
-    path:     /{id}
+    path:     /
     defaults: { _controller: "SiviuqMainBundle:Evaluador:index" }
 
 evaluador_show:
@@ -32,3 +32,7 @@ evaluador_delete:
 evaluador_assign:
     path: /{evaluadorId}/{proyectoId}
     defaults: {_controller: "SiviuqMainBundle:Evaluador:asignarEvaluador"}
+
+evaluadores_proyecto:
+    path: /evaluadores
+    defaults: {_controller: "SiviuqMainBundle:Evaluador:evaluadoresProyecto"}
