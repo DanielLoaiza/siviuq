@@ -5,6 +5,7 @@ namespace Siviuq\MainBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class InvestigadorType extends AbstractType
 {
@@ -19,7 +20,21 @@ class InvestigadorType extends AbstractType
             ->add('correo')
             ->add('direccion')
             ->add('telefono')
-            ->add('tipo')
+           ->add('tipo', 'integer', array(
+        'label' => 'Tipo', 
+        'data' => 0, // default value
+        'precision' => 0, // disallow floats
+        'constraints' => array(
+            new Assert\NotBlank(), 
+            new Assert\Type('integer'), 
+            new Assert\Regex(array(
+                'pattern' => '/^[0-9]\d*$/',
+                'message' => 'Por favor ingresa 0 o 1'
+                )
+            ),
+            new Assert\Length(array('max' => 2))
+        )
+    ))
             ->add('cedula')
             ->add('observaciones')
             ->add('programaAcademico')

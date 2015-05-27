@@ -393,7 +393,7 @@ class ProyectosController extends Controller
     		$em = $this->getDoctrine()->getManager();
     		$convocatoria=$em->getRepository('SiviuqMainBundle:Convocatoria')->find($id);
     		$entity->setNumeroConvocatoria($convocatoria);
-    		$entity->setEstado('Revision');
+    		$entity->setEstado('REVISION');
     		$em->persist($entity);
     		$em->flush();
     		
@@ -431,6 +431,8 @@ class ProyectosController extends Controller
     				p.investigadorPrincipal i WHERE p.id=:pid');
     	$query->setParameter('pid',$id);
     	$result=$query->getResult();
+    	$entity->setEstado('EJECUCION');
+    	$em->flush();
     	
     	$mailer = $this->get('mailer');
     	$message = $mailer->createMessage()
@@ -465,6 +467,8 @@ class ProyectosController extends Controller
     				p.investigadorPrincipal i WHERE p.id=:pid');
     	$query->setParameter('pid',$id);
     	$result=$query->getResult();
+    	$result[0]->setEstado('RECHAZADO');
+    	$em->flush();
     	 
     	$mailer = $this->get('mailer');
     	$message = $mailer->createMessage()

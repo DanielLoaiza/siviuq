@@ -4,5 +4,11 @@
     <h1>Crear Convocatoria</h1>
 
     {{ form(form) }}
+    
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 
 {% endblock %}

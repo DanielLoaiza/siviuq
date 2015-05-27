@@ -57,6 +57,8 @@ class ConvocatoriaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+        	if($entity->getFechaFin()>$entity->getFechaInicia())
+        	{
         	$entity->upload();
             $em = $this->getDoctrine()->getManager();
             $entity->setEstado(1);
@@ -64,6 +66,13 @@ class ConvocatoriaController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('convocatoria_show', array('id' => $entity->getId())));
+        	}
+        }
+        else {
+        	$this->addFlash(
+        			'notice',
+        			'Por favor ingresa fechas validas'
+        	);
         }
 
         return $this->render('SiviuqMainBundle:Convocatoria:new.html.twig', array(
